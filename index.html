@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lucrando com Ads | Domine o Google Ads e Venda Todo Dia</title>
+  <meta name="description" content="Aprenda a criar campanhas lucrativas no Google Ads do zero ao avançado. Método validado com centenas de alunos. Acesso imediato."/>
+
+  <!-- ===== TAILWIND CSS CDN ===== -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ===== AOS ANIMATIONS ===== -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- ===== GOOGLE FONTS ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <script>
+    // ===== TAILWIND CONFIG COM PALETA GOOGLE =====
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gblue:  '#4285F4',
+            gred:   '#EA4335',
+            gyellow:'#FBBC05',
+            ggreen: '#34A853',
+            dark:   '#0f1117',
+            darker: '#080a0f',
+          },
+          fontFamily: {
+            display: ['Barlow', 'sans-serif'],
+            body:    ['Inter',  'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ===== ESTILOS GLOBAIS ===== */
+    * { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0f1117; color: #f1f5f9; }
+
+    /* Gradiente hero */
+    .hero-gradient {
+      background: radial-gradient(ellipse at 60% 0%, rgba(66,133,244,0.25) 0%, transparent 60%),
+                  radial-gradient(ellipse at 10% 80%, rgba(234,67,53,0.15) 0%, transparent 50%),
+                  #0f1117;
+    }
+
+    /* Borda colorida Google */
+    .google-border {
+      border-image: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853) 1;
+    }
+
+    /* Botão principal pulsante */
+    .btn-primary {
+      background: linear-gradient(135deg, #4285F4 0%, #1a6fed 100%);
+      box-shadow: 0 0 30px rgba(66,133,244,0.5);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 50px rgba(66,133,244,0.8);
+    }
+
+    /* Botão secundário */
+    .btn-secondary {
+      background: linear-gradient(135deg, #34A853 0%, #279147 100%);
+      box-shadow: 0 0 20px rgba(52,168,83,0.4);
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 40px rgba(52,168,83,0.7);
+    }
+
+    /* Card com glow */
+    .card-glow {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s ease;
+    }
+    .card-glow:hover {
+      background: rgba(66,133,244,0.08);
+      border-color: rgba(66,133,244,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(66,133,244,0.15);
+    }
+
+    /* Linha colorida Google */
+    .google-line {
+      height: 4px;
+      background: linear-gradient(90deg, #4285F4 25%, #EA4335 25% 50%, #FBBC05 50% 75%, #34A853 75%);
+      border-radius: 2px;
+    }
+
+    /* Tag badge */
+    .badge {
+      background: rgba(66,133,244,0.15);
+      border: 1px solid rgba(66,133,244,0.4);
+      color: #93c5fd;
+    }
+
+    /* FAQ accordion */
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-content.open { max-height: 500px; }
+    .faq-icon { transition: transform 0.3s ease; }
+    .faq-icon.open { transform: rotate(45deg); }
+
+    /* Contador regressivo */
+    .timer-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      min-width: 64px;
+    }
+
+    /* Barra de progresso animada */
+    @keyframes progress { from { width: 0% } to { width: 82% } }
+    .progress-bar { animation: progress 2s ease forwards; }
+
+    /* WhatsApp float */
+    .whatsapp-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      background: #25D366;
+      box-shadow: 0 8px 30px rgba(37,211,102,0.6);
+      transition: all 0.3s ease;
+    }
+    .whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 12px 40px rgba(37,211,102,0.8); }
+
+    /* Pulse ring */
+    .pulse-ring::before {
+      content: ''; position: absolute; inset: -6px;
+      border-radius: 50%; border: 3px solid #25D366;
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    @keyframes pulse-ring { 0%{transform:scale(1);opacity:1} 100%{transform:scale(1.5);opacity:0} }
+
+    /* Estrelas */
+    .stars { color: #FBBC05; letter-spacing: 2px; }
+
+    /* Seção oferta */
+    .offer-glow {
+      background: radial-gradient(ellipse at 50% 0%, rgba(66,133,244,0.2) 0%, transparent 70%), #141720;
+      border: 1px solid rgba(66,133,244,0.3);
+    }
+
+    /* Módulo card */
+    .module-card {
+      background: rgba(255,255,255,0.03);
+      border-left: 3px solid;
+      transition: all 0.3s;
+    }
+    .module-card:hover { background: rgba(255,255,255,0.07); transform: translateX(6px); }
+
+    /* Scroll suave anchor */
+    html { scroll-padding-top: 80px; }
+
+    /* Responsividade hero text */
+    @media(max-width:640px){ .hero-title { font-size: 2rem !important; } }
+  </style>
+</head>
+
+<body class="hero-gradient">
+
+<!-- ============================================================ -->
+<!-- BARRA TOPO URGÊNCIA                                          -->
+<!-- ============================================================ -->
+<div class="bg-gblue text-white text-center py-2 px-4 text-sm font-semibold tracking-wide">
+  🔥 OFERTA POR TEMPO LIMITADO — <span id="spots">17</span> vagas restantes neste preço!
+</div>
+
+<!-- ============================================================ -->
+<!-- NAVBAR                                                       -->
+<!-- ============================================================ -->
+<nav class="sticky top-0 z-50 backdrop-blur-md bg-black/60 border-b border-white/10">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="24" fill="#0f1117"/>
+        <path d="M24 12h12v6H24v6h10v6H24v6H12V12h12z" fill="#4285F4"/>
+        <circle cx="18" cy="30" r="4" fill="#EA4335"/>
+        <circle cx="30" cy="18" r="4" fill="#FBBC05"/>
+      </svg>
+      <span class="font-display font-900 text-xl text-white">Lucrando <span class="text-gblue">com Ads</span></span>
+    </div>
+    <!-- CTA nav -->
+    <a href="#oferta" class="hidden sm:block btn-primary text-white text-sm font-bold px-5 py-2 rounded-full">
+      Quero me inscrever →
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- HERO SECTION                                                 -->
+<!-- ============================================================ -->
+<section class="relative overflow-hidden px-4 pt-16 pb-20 text-center">
+
+  <!-- Badge topo -->
+  <div class="inline-flex items-center gap-2 badge rounded-full px-4 py-1 text-sm font-semibold mb-6" data-aos="fade-down">
+    <span class="w-2 h-2 rounded-full bg-gblue animate-pulse"></span>
+    Método validado por +500 alunos em 2024
+  </div>
+
+  <!-- Título principal -->
+  <h1 class="hero-title font-display font-900 text-4xl md:text-6xl lg:text-7xl leading-tight text-white mb-6" data-aos="fade-up" data-aos-delay="100">
+    Aprenda a <span class="text-gblue">Dominar</span> o<br/>
+    <span class="text-gyellow">Google Ads</span> e Vender<br/>
+    <span class="text-ggreen">Todos os Dias</span>
+  </h1>
+
+  <div class="google-line w-32 mx-auto mb-6" data-aos="zoom-in" data-aos-delay="200"></div>
+
+  <!-- Subtítulo -->
+  <p class="max-w-2xl mx-auto text-slate-300 text-lg md:text-xl leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="250">
+    Do absoluto zero ao avançado: crie campanhas lucrativas, pare de queimar dinheiro e 
+    <strong class="text-white">transforme cliques em faturamento real</strong> — mesmo sem experiência anterior.
+  </p>
+
+  <!-- Vagas / urgência visual -->
+  <div class="max-w-sm mx-auto mb-8" data-aos="fade-up" data-aos-delay="300">
+    <div class="flex justify-between text-xs text-slate-400 mb-1">
+      <span>Vagas preenchidas</span>
+      <span class="text-gred font-bold">82%</span>
+    </div>
+    <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+      <div class="progress-bar h-full bg-gradient-to-r from-gblue via-gyellow to-gred rounded-full"></div>
+    </div>
+  </div>
+
+  <!-- CTA principal -->
+  <div data-aos="zoom-in" data-aos-delay="350">
+    <a href="#oferta" class="btn-primary inline-block text-white font-display font-800 text-xl px-10 py-5 rounded-2xl mb-3">
+      SIM, QUERO LUCRAR COM ADS AGORA →
+    </a>
+    <p class="text-slate-400 text-sm">🔒 Acesso imediato · 7 dias de garantia · Parcela em 12x</p>
+  </div>
+
+  <!-- Mini prova social hero -->
+  <div class="flex flex-wrap justify-center gap-6 mt-12" data-aos="fade-up" data-aos-delay="400">
+    <div class="flex items-center gap-2 text-sm text-slate-300">
+      <span class="text-ggreen text-lg">✔</span> +500 alunos ativos
+    </div>
+    <div class="flex items-center gap-2 text-sm text-slate-300">
+      <span class="text-gblue text-lg">✔</span> +80 aulas práticas
+    </div>
+    <div class="flex items-center gap-2 text-sm text-slate-300">
+      <span class="text-gyellow text-lg">✔</span> Suporte no Telegram
+    </div>
+    <div class="flex items-center gap-2 text-sm text-slate-300">
+      <span class="text-gred text-lg">✔</span> Resultado desde a 1ª semana
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PARA QUEM É                                                  -->
+<!-- ============================================================ -->
+<section class="py-20 px-4 bg-darker">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="badge rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest">Para quem é</span>
+      <h2 class="font-display font-800 text-3xl md:text-5xl text-white mt-4">
+        Este curso foi feito <span class="text-gblue">para você</span> se…
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <!-- Card 1 -->
+      <div class="card-glow rounded-2xl p-6 flex gap-4" data-aos="fade-right">
+        <div class="text-4xl">😤</div>
+        <div>
+          <h3 class="font-display font-700 text-white text-lg mb-1">Você já tentou Google Ads e queimou dinheiro</h3>
+          <p class="text-slate-400 text-sm">Campanhas rodando sem retorno, verba sumindo e zero vendas. Aqui você aprende onde estava errando.</p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card-glow rounded-2xl p-6 flex gap-4" data-aos="fade-left">
+        <div class="text-4xl">🚀</div>
+        <div>
+          <h3 class="font-display font-700 text-white text-lg mb-1">Quer escalar seu negócio com tráfego pago</h3>
+          <p class="text-slate-400 text-sm">Tem um produto ou serviço e precisa de clientes de forma previsível e escalável todo mês.</p>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card-glow rounded-2xl p-6 flex gap-4" data-aos="fade-right" data-aos-delay="100">
+        <div class="text-4xl">💼</div>
+        <div>
+          <h3 class="font-display font-700 text-white text-lg mb-1">Quer se tornar um gestor de tráfego profissional</h3>
+          <p class="text-slate-400 text-sm">Prestar serviço para empresas, cobrar bem e trabalhar de qualquer lugar gerenciando contas.</p>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="card-glow rounded-2xl p-6 flex gap-4" data-aos="fade-left" data-aos-delay="100">
+        <div class="text-4xl">💡</div>
+        <div>
+          <h3 class="font-display font-700 text-white text-lg mb-1">Está começando do zero e não sabe por onde ir</h3>
+          <p class="text-slate-400 text-sm">Nunca mexeu no Google Ads mas quer entrar no mercado digital com uma habilidade de altíssima demanda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- O QUE VOCÊ VAI APRENDER — MÓDULOS                           -->
+<!-- ============================================================ -->
+<section id="conteudo" class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="badge rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest">Conteúdo</span>
+      <h2 class="font-display font-800 text-3xl md:text-5xl text-white mt-4">
+        O que você vai <span class="text-gyellow">dominar</span>
+      </h2>
+      <p class="text-slate-400 mt-3 max-w-xl mx-auto">Do básico ao avançado, em aulas objetivas e práticas. Aplicável no seu negócio desde o primeiro módulo.</p>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Módulo 1 -->
+      <div class="module-card rounded-xl p-5 border-gblue" style="border-left-color:#4285F4" data-aos="fade-up">
+        <div class="flex items-center gap-4">
+          <span class="text-2xl font-display font-900 text-gblue">01</span>
+          <div>
+            <h3 class="font-display font-700 text-white text-lg">Fundamentos do Google Ads</h3>
+            <p class="text-slate-400 text-sm">Entenda a plataforma por dentro: estrutura de campanhas, leilão, Quality Score e como o algoritmo pensa.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Módulo 2 -->
+      <div class="module-card rounded-xl p-5" style="border-left-color:#EA4335" data-aos="fade-up" data-aos-delay="50">
+        <div class="flex items-center gap-4">
+          <span class="text-2xl font-display font-900 text-gred">02</span>
+          <div>
+            <h3 class="font-display font-700 text-white text-lg">Pesquisa de Palavras-Chave Lucrativas</h3>
+            <p class="text-slate-400 text-sm">Encontre os termos que geram vendas e elimine os que desperdiçam verba. Método exclusivo de mapeamento.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Módulo 3 -->
+      <div class="module-card rounded-xl p-5" style="border-left-color:#FBBC05" data-aos="fade-up" data-aos-delay="100">
+        <div class="flex items-center gap-4">
+          <span class="text-2xl font-display font-900 text-gyellow">03</span>
+          <div>
+            <h3 class="font-display font-700 text-white text-lg">Criação de Anúncios que Convertem</h3>
+            <p class="text-slate-400 text-sm">Copywriting para anúncios de texto, headlines poderosas e extensões que aumentam o CTR na prática.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Módulo 4 -->
+      <div class="module-card rounded-xl p-5" style="border-left-color:#34A853" data-aos="fade-up" data-aos-delay="150">
+        <div class="flex items-center gap-4">
+          <span class="text-2xl font-display font-900 text-ggreen">04</span>
+          <div>
+            <h3 class="font-display font-700 text-white text-lg">Campanhas de Display e YouTube Ads</h3>
+            <p class="text-slate-400 text-sm">Expanda sua presença com banners e vídeos impactantes. Segmentação avançada e remarketing estratégico.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Módulo 5 -->
+      <div class="module-card rounded-xl p-5" style="border-left-color:#4285F4" data-aos="fade-up" data-aos-delay="200">
+        <div class="flex items-center gap-4">
+          <span class="text-2xl font-display font-900 text-gblue">05</span>
+          <div>
+            <h3 class="font-display font-700 text-white text-lg">Otimização e Escala de Campanhas</h3>
+            <p class="text-slate-400 text-sm">Como analisar métricas, cortar o que não funciona e duplicar o que dá resultado. ROAS e CPA na prática.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Módulo 6 -->
+      <div class="module-card rounded-xl p-5" style="border-left-color:#EA4335" data-aos="fade-up" data-aos-delay="250">
+        <div class="flex items-center gap-4">
+          <span class="text-2xl font-display font-900 text-gred">06</span>
+          <div>
+            <h3 class="font-display font-700 text-white text-lg">Gestão Profissional de Contas de Clientes</h3>
+            <p class="text-slate-400 text-sm">Como prestar serviço, precificar, apresentar relatórios e fidelizar clientes como gestor de tráfego.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- DEPOIMENTOS                                                  -->
+<!-- ============================================================ -->
+<section id="depoimentos" class="py-20 px-4 bg-darker">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="badge rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest">Depoimentos</span>
+      <h2 class="font-display font-800 text-3xl md:text-5xl text-white mt-4">
+        Resultados reais de <span class="text-ggreen">alunos reais</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Depoimento 1 -->
+      <div class="card-glow rounded-2xl p-6" data-aos="fade-up">
+        <div class="stars text-lg mb-3">★★★★★</div>
+        <p class="text-slate-300 text-sm leading-relaxed mb-5">"Em 3 semanas de curso já consegui meu primeiro cliente pagando R$1.500/mês de gestão. O módulo de captação de clientes é ouro puro. Nunca imaginei que aprenderia tão rápido."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gblue to-ggreen flex items-center justify-center font-bold text-white">R</div>
+          <div>
+            <p class="font-semibold text-white text-sm">Rafael Andrade</p>
+            <p class="text-slate-500 text-xs">Gestor de Tráfego · Goiânia/GO</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 2 -->
+      <div class="card-glow rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="stars text-lg mb-3">★★★★★</div>
+        <p class="text-slate-300 text-sm leading-relaxed mb-5">"Tinha uma loja física parada e resolvi testar Google Ads. Com o método do curso, em 45 dias triplicamos as vendas online. O investimento se pagou na primeira semana!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gred to-gyellow flex items-center justify-center font-bold text-white">M</div>
+          <div>
+            <p class="font-semibold text-white text-sm">Mariana Costa</p>
+            <p class="text-slate-500 text-xs">Empreendedora · São Paulo/SP</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 3 -->
+      <div class="card-glow rounded-2xl p-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="stars text-lg mb-3">★★★★★</div>
+        <p class="text-slate-300 text-sm leading-relaxed mb-5">"Trabalhava de CLT e queria sair. Fiz o curso, aprendi a gerir tráfego e hoje tenho 4 clientes fixos. Substituí meu salário em 2 meses. Conteúdo prático e direto ao ponto."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gyellow to-ggreen flex items-center justify-center font-bold text-white">L</div>
+          <div>
+            <p class="font-semibold text-white text-sm">Lucas Ferreira</p>
+            <p class="text-slate-500 text-xs">Freelancer Digital · Curitiba/PR</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 4 -->
+      <div class="card-glow rounded-2xl p-6" data-aos="fade-up" data-aos-delay="50">
+        <div class="stars text-lg mb-3">★★★★★</div>
+        <p class="text-slate-300 text-sm leading-relaxed mb-5">"O suporte no Telegram é incrível. Toda vez que tinha dúvida, a equipe respondia rápido. Aprendi do zero e já estou rodando campanhas com ROAS de 4x. Recomendo muito!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gblue to-gred flex items-center justify-center font-bold text-white">J</div>
+          <div>
+            <p class="font-semibold text-white text-sm">Julia Mendes</p>
+            <p class="text-slate-500 text-xs">Afiliada · Fortaleza/CE</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 5 -->
+      <div class="card-glow rounded-2xl p-6" data-aos="fade-up" data-aos-delay="150">
+        <div class="stars text-lg mb-3">★★★★★</div>
+        <p class="text-slate-300 text-sm leading-relaxed mb-5">"Sou dentista e queria atrair mais pacientes. Aprendi a criar campanhas para clínicas e agora pago R$18 por lead qualificado. Melhor investimento do ano."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-ggreen to-gblue flex items-center justify-center font-bold text-white">C</div>
+          <div>
+            <p class="font-semibold text-white text-sm">Carlos Eduardo</p>
+            <p class="text-slate-500 text-xs">Dentista · Belo Horizonte/MG</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 6 -->
+      <div class="card-glow rounded-2xl p-6" data-aos="fade-up" data-aos-delay="250">
+        <div class="stars text-lg mb-3">★★★★★</div>
+        <p class="text-slate-300 text-sm leading-relaxed mb-5">"Comecei sem saber nem o que era CPC. Depois do curso consegui montar uma agência de tráfego. Hoje faturamos R$ 18k/mês. O curso mudou minha vida de verdade."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gred to-gblue flex items-center justify-center font-bold text-white">P</div>
+          <div>
+            <p class="font-semibold text-white text-sm">Priscila Rocha</p>
+            <p class="text-slate-500 text-xs">Dona de Agência · Recife/PE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÔNUS                                                        -->
+<!-- ============================================================ -->
+<section class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="badge rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest">Bônus Exclusivos</span>
+      <h2 class="font-display font-800 text-3xl md:text-5xl text-white mt-4">
+        Mais de <span class="text-gyellow">R$ 1.500</span> em bônus<br/>
+        <span class="text-ggreen">totalmente gratuitos</span>
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Bônus 1 -->
+      <div class="card-glow rounded-2xl p-6 text-center" data-aos="zoom-in">
+        <div class="text-5xl mb-4">📊</div>
+        <h3 class="font-display font-700 text-white text-base mb-2">Planilha de Gestão de Campanhas</h3>
+        <p class="text-slate-400 text-xs mb-3">Controle verba, ROAS, CPA e resultados em tempo real. Usada por gestores profissionais.</p>
+        <p class="text-gred line-through text-xs">DE R$ 297,00</p>
+        <p class="text-ggreen font-bold text-sm">POR R$ 0,00 ✓</p>
+      </div>
+      <!-- Bônus 2 -->
+      <div class="card-glow rounded-2xl p-6 text-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="text-5xl mb-4">✍️</div>
+        <h3 class="font-display font-700 text-white text-base mb-2">Templates de Copy para Anúncios</h3>
+        <p class="text-slate-400 text-xs mb-3">+50 modelos de headlines e descrições para diferentes segmentos. Copie, adapte e publique.</p>
+        <p class="text-gred line-through text-xs">DE R$ 397,00</p>
+        <p class="text-ggreen font-bold text-sm">POR R$ 0,00 ✓</p>
+      </div>
+      <!-- Bônus 3 -->
+      <div class="card-glow rounded-2xl p-6 text-center" data-aos="zoom-in" data-aos-delay="200">
+        <div class="text-5xl mb-4">💬</div>
+        <h3 class="font-display font-700 text-white text-base mb-2">Grupo VIP de Estratégias</h3>
+        <p class="text-slate-400 text-xs mb-3">Canal exclusivo no Telegram com novidades, tendências e insights do mercado toda semana.</p>
+        <p class="text-gred line-through text-xs">DE R$ 397,00</p>
+        <p class="text-ggreen font-bold text-sm">POR R$ 0,00 ✓</p>
+      </div>
+      <!-- Bônus 4 -->
+      <div class="card-glow rounded-2xl p-6 text-center" data-aos="zoom-in" data-aos-delay="50">
+        <div class="text-5xl mb-4">🎯</div>
+        <h3 class="font-display font-700 text-white text-base mb-2">Script de Captação de Clientes</h3>
+        <p class="text-slate-400 text-xs mb-3">Abordagem passo a passo para conseguir seus primeiros clientes de gestão de tráfego.</p>
+        <p class="text-gred line-through text-xs">DE R$ 247,00</p>
+        <p class="text-ggreen font-bold text-sm">POR R$ 0,00 ✓</p>
+      </div>
+      <!-- Bônus 5 -->
+      <div class="card-glow rounded-2xl p-6 text-center" data-aos="zoom-in" data-aos-delay="150">
+        <div class="text-5xl mb-4">🏆</div>
+        <h3 class="font-display font-700 text-white text-base mb-2">Mentorias em Grupo ao Vivo</h3>
+        <p class="text-slate-400 text-xs mb-3">Sessões mensais ao vivo para tirar dúvidas, revisar campanhas e acelerar seus resultados.</p>
+        <p class="text-gred line-through text-xs">DE R$ 197,00</p>
+        <p class="text-ggreen font-bold text-sm">POR R$ 0,00 ✓</p>
+      </div>
+      <!-- Bônus 6 -->
+      <div class="card-glow rounded-2xl p-6 text-center" data-aos="zoom-in" data-aos-delay="250">
+        <div class="text-5xl mb-4">📑</div>
+        <h3 class="font-display font-700 text-white text-base mb-2">Checklist de Campanha Perfeita</h3>
+        <p class="text-slate-400 text-xs mb-3">Nunca mais esqueça nenhum detalhe. Valide cada campanha antes de publicar com nossa lista completa.</p>
+        <p class="text-gred line-through text-xs">DE R$ 97,00</p>
+        <p class="text-ggreen font-bold text-sm">POR R$ 0,00 ✓</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- OFERTA / PREÇO                                               -->
+<!-- ============================================================ -->
+<section id="oferta" class="py-20 px-4 bg-darker">
+  <div class="max-w-2xl mx-auto">
+
+    <!-- Timer -->
+    <div class="text-center mb-10" data-aos="fade-up">
+      <p class="text-gred font-bold text-sm uppercase tracking-widest mb-3">⚠️ Oferta encerra em:</p>
+      <div class="flex justify-center gap-3">
+        <div class="timer-box rounded-xl p-3 text-center">
+          <span id="hours" class="font-display font-900 text-3xl text-white block">02</span>
+          <span class="text-slate-500 text-xs">Horas</span>
+        </div>
+        <span class="font-display text-3xl text-white mt-2">:</span>
+        <div class="timer-box rounded-xl p-3 text-center">
+          <span id="minutes" class="font-display font-900 text-3xl text-white block">59</span>
+          <span class="text-slate-500 text-xs">Minutos</span>
+        </div>
+        <span class="font-display text-3xl text-white mt-2">:</span>
+        <div class="timer-box rounded-xl p-3 text-center">
+          <span id="seconds" class="font-display font-900 text-3xl text-white block">00</span>
+          <span class="text-slate-500 text-xs">Segundos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card oferta -->
+    <div class="offer-glow rounded-3xl p-8 md:p-12 text-center" data-aos="zoom-in">
+
+      <div class="google-line w-24 mx-auto mb-6 rounded-full"></div>
+
+      <h2 class="font-display font-900 text-3xl md:text-4xl text-white mb-2">Lucrando com Ads</h2>
+      <p class="text-slate-400 mb-8">Acesso completo + todos os bônus exclusivos</p>
+
+      <!-- Preço -->
+      <div class="mb-8">
+        <p class="text-slate-400 text-sm mb-1">De <span class="line-through text-slate-500">R$ 997,00</span></p>
+        <p class="text-slate-300 text-lg font-semibold">Por apenas</p>
+        <p class="font-display font-900 text-6xl text-white leading-none">
+          12<span class="text-3xl">x de</span>
+        </p>
+        <p class="font-display font-900 text-6xl text-gblue">R$ 47,90</p>
+        <p class="text-slate-400 text-sm mt-2">ou <strong class="text-white">R$ 497,00</strong> à vista no PIX</p>
+      </div>
+
+      <!-- O que está incluso -->
+      <ul class="text-left space-y-3 mb-8 max-w-sm mx-auto">
+        <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-ggreen font-bold">✓</span> +80 aulas práticas e objetivas</li>
+        <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-ggreen font-bold">✓</span> Acesso imediato após pagamento</li>
+        <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-ggreen font-bold">✓</span> 12 meses de acesso ao conteúdo</li>
+        <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-ggreen font-bold">✓</span> Suporte pelo Telegram</li>
+        <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-ggreen font-bold">✓</span> Atualizações inclusas</li>
+        <li class="flex items-center gap-3 text-sm text-slate-300"><span class="text-gyellow font-bold">★</span> Todos os 6 bônus exclusivos</li>
+      </ul>
+
+      <!-- Botão CTA principal -->
+      <a href="https://wa.me/5594984050891" target="_blank"
+         class="btn-primary block text-white font-display font-800 text-xl px-8 py-5 rounded-2xl mb-4">
+        QUERO ME INSCREVER AGORA →
+      </a>
+
+      <!-- Garantia -->
+      <div class="flex items-center justify-center gap-3 bg-white/5 rounded-xl p-4">
+        <span class="text-4xl">🛡️</span>
+        <div class="text-left">
+          <p class="text-white font-bold text-sm">Garantia de 7 dias</p>
+          <p class="text-slate-400 text-xs">Não gostou? Devolvemos 100% do seu dinheiro. Sem perguntas.</p>
+        </div>
+      </div>
+
+      <!-- Selos de pagamento -->
+      <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs text-slate-500">
+        <span>💳 Cartão de crédito</span>
+        <span>·</span>
+        <span>📱 PIX</span>
+        <span>·</span>
+        <span>🏦 Boleto bancário</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FAQ                                                          -->
+<!-- ============================================================ -->
+<section id="faq" class="py-20 px-4">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="badge rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest">FAQ</span>
+      <h2 class="font-display font-800 text-3xl md:text-5xl text-white mt-4">
+        Dúvidas <span class="text-gblue">frequentes</span>
+      </h2>
+    </div>
+
+    <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+      <!-- FAQ 1 -->
+      <div class="card-glow rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+          <span class="font-semibold text-white text-sm md:text-base">Preciso ter experiência em marketing para fazer o curso?</span>
+          <span class="faq-icon text-gblue text-2xl font-light ml-4 flex-shrink-0">+</span>
+        </button>
+        <div class="faq-content px-5 pb-0">
+          <p class="text-slate-400 text-sm pb-5">Não! O curso começa do absoluto zero. Você vai entender cada conceito de forma progressiva, com exemplos práticos e reais. Alunos sem nenhuma experiência prévia já conseguiram resultados na primeira semana.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="card-glow rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+          <span class="font-semibold text-white text-sm md:text-base">Preciso investir dinheiro em anúncios para aplicar o conteúdo?</span>
+          <span class="faq-icon text-gblue text-2xl font-light ml-4 flex-shrink-0">+</span>
+        </button>
+        <div class="faq-content px-5 pb-0">
+          <p class="text-slate-400 text-sm pb-5">Você pode começar com orçamentos baixos, de R$ 10 a R$ 30 por dia. O curso ensina justamente como otimizar cada centavo investido. Muitos alunos já tiveram retorno positivo com menos de R$ 300 de verba inicial.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="card-glow rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+          <span class="font-semibold text-white text-sm md:text-base">Como funciona o suporte durante o curso?</span>
+          <span class="faq-icon text-gblue text-2xl font-light ml-4 flex-shrink-0">+</span>
+        </button>
+        <div class="faq-content px-5 pb-0">
+          <p class="text-slate-400 text-sm pb-5">Você terá acesso a um grupo exclusivo no Telegram com uma equipe treinada para responder suas dúvidas em até 24h. Além disso, participará das mentorias ao vivo mensais.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="card-glow rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+          <span class="font-semibold text-white text-sm md:text-base">Por quanto tempo terei acesso ao conteúdo?</span>
+          <span class="faq-icon text-gblue text-2xl font-light ml-4 flex-shrink-0">+</span>
+        </button>
+        <div class="faq-content px-5 pb-0">
+          <p class="text-slate-400 text-sm pb-5">Você terá acesso completo por 12 meses a partir da data da compra. Durante esse período, recebe todas as atualizações do curso sem custo adicional.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="card-glow rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+          <span class="font-semibold text-white text-sm md:text-base">Posso acessar pelo celular?</span>
+          <span class="faq-icon text-gblue text-2xl font-light ml-4 flex-shrink-0">+</span>
+        </button>
+        <div class="faq-content px-5 pb-0">
+          <p class="text-slate-400 text-sm pb-5">Sim! A plataforma é totalmente responsiva e funciona perfeitamente no celular, tablet e computador. Você estuda no seu ritmo, onde e quando quiser.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="card-glow rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+          <span class="font-semibold text-white text-sm md:text-base">E se eu não gostar do curso?</span>
+          <span class="faq-icon text-gblue text-2xl font-light ml-4 flex-shrink-0">+</span>
+        </button>
+        <div class="faq-content px-5 pb-0">
+          <p class="text-slate-400 text-sm pb-5">Sem problema! Você tem 7 dias de garantia incondicional. Se por qualquer motivo não gostar, basta solicitar o reembolso e devolvemos 100% do valor pago. Sem burocracia, sem perguntas.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA final FAQ -->
+    <div class="text-center mt-12" data-aos="zoom-in">
+      <a href="#oferta" class="btn-secondary inline-block text-white font-display font-800 text-lg px-10 py-5 rounded-2xl">
+        TIREI MINHAS DÚVIDAS — QUERO COMEÇAR! →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FORMULÁRIO DE CONTATO (Formspree)                           -->
+<!-- ============================================================ -->
+<section id="contato" class="py-20 px-4 bg-darker">
+  <div class="max-w-xl mx-auto">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <span class="badge rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest">Contato</span>
+      <h2 class="font-display font-800 text-3xl md:text-4xl text-white mt-4">Ainda tem dúvidas?<br/><span class="text-gblue">Fale conosco</span></h2>
+      <p class="text-slate-400 mt-3 text-sm">Responderemos em até 24h por e-mail ou WhatsApp.</p>
+    </div>
+
+    <!-- FORMULÁRIO FORMSPREE — substitua SEU_ID pelo ID do Formspree -->
+    <form action="https://formspree.io/f/SEU_ID" method="POST"
+          class="card-glow rounded-2xl p-8 space-y-5" data-aos="fade-up" data-aos-delay="100">
+
+      <div>
+        <label class="block text-sm text-slate-300 font-medium mb-1">Nome completo</label>
+        <input type="text" name="nome" required placeholder="Seu nome"
+               class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gblue transition"/>
+      </div>
+
+      <div>
+        <label class="block text-sm text-slate-300 font-medium mb-1">E-mail</label>
+        <input type="email" name="email" required placeholder="seu@email.com"
+               class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gblue transition"/>
+      </div>
+
+      <div>
+        <label class="block text-sm text-slate-300 font-medium mb-1">WhatsApp</label>
+        <input type="tel" name="whatsapp" placeholder="(00) 00000-0000"
+               class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gblue transition"/>
+      </div>
+
+      <div>
+        <label class="block text-sm text-slate-300 font-medium mb-1">Sua dúvida</label>
+        <textarea name="mensagem" rows="4" required placeholder="Escreva sua dúvida aqui..."
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gblue transition resize-none"></textarea>
+      </div>
+
+      <button type="submit"
+              class="btn-primary w-full text-white font-display font-700 text-base py-4 rounded-xl">
+        ENVIAR MENSAGEM →
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RODAPÉ                                                       -->
+<!-- ============================================================ -->
+<footer class="bg-black border-t border-white/10 py-10 px-4 text-center">
+  <div class="max-w-4xl mx-auto">
+    <!-- Logo footer -->
+    <div class="flex items-center justify-center gap-2 mb-4">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+        <path d="M24 12h12v6H24v6h10v6H24v6H12V12h12z" fill="#4285F4"/>
+        <circle cx="18" cy="30" r="4" fill="#EA4335"/>
+        <circle cx="30" cy="18" r="4" fill="#FBBC05"/>
+      </svg>
+      <span class="font-display font-800 text-white">Lucrando com Ads</span>
+    </div>
+
+    <div class="google-line w-20 mx-auto mb-6"></div>
+
+    <p class="text-slate-500 text-xs max-w-xl mx-auto leading-relaxed mb-6">
+      Os resultados apresentados neste site são de alunos reais, porém não constituem garantia de resultados.
+      O sucesso depende de dedicação, aplicação e consistência de cada pessoa.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4 text-xs text-slate-600">
+      <a href="#" class="hover:text-slate-400 transition">Política de Privacidade</a>
+      <span>·</span>
+      <a href="#" class="hover:text-slate-400 transition">Termos de Uso</a>
+      <span>·</span>
+      <a href="#contato" class="hover:text-slate-400 transition">Contato</a>
+    </div>
+
+    <p class="text-slate-700 text-xs mt-6">© 2024 Lucrando com Ads. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- BOTÃO FLUTUANTE WHATSAPP                                     -->
+<!-- ============================================================ -->
+<a href="https://wa.me/5594984050891?text=Olá!%20Tenho%20interesse%20no%20curso%20Lucrando%20com%20Ads!"
+   target="_blank"
+   class="whatsapp-float relative w-16 h-16 rounded-full flex items-center justify-center pulse-ring"
+   title="Fale no WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30">
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.52 14.14c-.23.65-1.33 1.24-1.84 1.32-.46.07-1.05.1-1.69-.11-.39-.12-.88-.29-1.51-.57-2.65-1.14-4.38-3.82-4.51-4-.13-.17-1.08-1.43-1.08-2.73s.68-1.93.93-2.19c.24-.26.52-.32.69-.32l.5.01c.16 0 .38-.06.59.45l.82 2.06c.07.18.04.39-.09.56l-.45.54c-.1.12-.2.26-.08.5.55 1 1.22 1.71 2.16 2.29.24.14.39.12.53-.04l.52-.61c.14-.17.35-.22.55-.14l1.93.91c.32.15.46.26.46.52 0 .25-.05.78-.28 1.44z"/>
+  </svg>
+</a>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS                                                      -->
+<!-- ============================================================ -->
+<script>
+  // ===== INICIALIZAR AOS =====
+  AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic' });
+
+  // ===== FAQ ACCORDION =====
+  function toggleFaq(btn) {
+    const content = btn.nextElementSibling;
+    const icon    = btn.querySelector('.faq-icon');
+    content.classList.toggle('open');
+    icon.classList.toggle('open');
+  }
+
+  // ===== CONTADOR REGRESSIVO =====
+  (function() {
+    // Define tempo: 2h59m a partir do carregamento
+    let total = 2 * 3600 + 59 * 60;
+    const h = document.getElementById('hours');
+    const m = document.getElementById('minutes');
+    const s = document.getElementById('seconds');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    const tick = setInterval(() => {
+      if (total <= 0) { clearInterval(tick); return; }
+      total--;
+      h.textContent = pad(Math.floor(total / 3600));
+      m.textContent = pad(Math.floor((total % 3600) / 60));
+      s.textContent = pad(total % 60);
+    }, 1000);
+  })();
+
+  // ===== VAGAS DINÂMICAS =====
+  (function() {
+    let spots = 17;
+    const el = document.getElementById('spots');
+    setInterval(() => {
+      if (spots > 5 && Math.random() < 0.3) {
+        spots--;
+        el.textContent = spots;
+      }
+    }, 15000);
+  })();
+</script>
+
+</body>
+</html>
