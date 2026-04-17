@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <ul class="space-y-4">
+          <li>✔️ Otimização para reduzir custo por clique</li>
+          <li>✔️ Estratégias para escalar resultados</li>
+          <li>✔️ Como vender serviços de tráfego pago</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="py-16 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-12" data-aos="fade-up">Resultados de alunos</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 shadow rounded" data-aos="zoom-in">
+        <p>"Fiz minha primeira venda em 7 dias!"</p>
+        <strong>- João</strong>
+      </div>
+      <div class="p-6 shadow rounded" data-aos="zoom-in" data-aos-delay="100">
+        <p>"Hoje vivo de gestão de tráfego."</p>
+        <strong>- Maria</strong>
+      </div>
+      <div class="p-6 shadow rounded" data-aos="zoom-in" data-aos-delay="200">
+        <p>"Tripliquei meu faturamento."</p>
+        <strong>- Carlos</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-gray-100 py-16 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-10" data-aos="fade-up">Perguntas frequentes</h2>
+    <div class="space-y-4">
+      <details class="p-4 border rounded">
+        <summary class="font-semibold">Preciso de experiência?</summary>
+        <p>Não, o curso é do zero ao avançado.</p>
+      </details>
+      <details class="p-4 border rounded">
+        <summary class="font-semibold">Funciona mesmo?</summary>
+        <p>Sim, você aprende estratégias validadas.</p>
+      </details>
+      <details class="p-4 border rounded">
+        <summary class="font-semibold">Quanto posso ganhar?</summary>
+        <p>Depende da sua dedicação, mas o mercado é altamente lucrativo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section id="form" class="py-16 px-6">
+  <div class="max-w-xl mx-auto" data-aos="fade-up">
+    <h2 class="text-3xl font-bold text-center mb-6">Garanta sua vaga</h2>
+    <form action="https://formspree.io/f/your-id" method="POST" class="space-y-4">
+      <input type="text" name="name" placeholder="Seu nome" required class="w-full p-3 border rounded">
+      <input type="email" name="email" placeholder="Seu email" required class="w-full p-3 border rounded">
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-semibold">Quero me inscrever</button>
+    </form>
+  </div>
+</section>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5594984050891" target="_blank" class="fixed bottom-5 right-5 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition">
+  💬
+</a>
+
+<!-- AOS Script -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+</body>
+</html>
