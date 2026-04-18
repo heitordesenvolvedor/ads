@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lex Pública | Consultoria e Assessoria em Licitações</title>
+  <meta name="description" content="20 anos de experiência em licitações públicas. Assessoria completa de ponta a ponta: análise de editais, elaboração de propostas, recursos e muito mais."/>
+  <meta property="og:title" content="Lex Pública — Sua empresa habilitada para vencer licitações"/>
+  <meta property="og:description" content="Consultoria especializada em licitações públicas com acompanhamento completo. Fale com nossos especialistas."/>
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --navy:        #0B1F3A;
+      --navy-mid:    #112B52;
+      --navy-light:  #1A3A6B;
+      --gold:        #C9A84C;
+      --gold-light:  #E2C97E;
+      --silver:      #8A9BB0;
+      --steel:       #D4DCE8;
+      --off-white:   #F4F6FA;
+      --white:       #FFFFFF;
+      --text-dark:   #0B1F3A;
+      --text-mid:    #3D5170;
+      --text-muted:  #7A8FA6;
+      --border:      rgba(11,31,58,0.10);
+      --border-gold: rgba(201,168,76,0.35);
+
+      --font-display: 'Playfair Display', serif;
+      --font-body:    'Outfit', sans-serif;
+
+      --shadow-sm:   0 2px 12px rgba(11,31,58,0.07);
+      --shadow-md:   0 8px 32px rgba(11,31,58,0.10);
+      --shadow-lg:   0 24px 64px rgba(11,31,58,0.14);
+      --shadow-gold: 0 8px 32px rgba(201,168,76,0.25);
+
+      --radius:    12px;
+      --radius-lg: 20px;
+      --radius-xl: 32px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; }
+    button { cursor: pointer; }
+
+    /* ============================================================
+       SCROLLBAR
+    ============================================================ */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--off-white); }
+    ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 2px; }
+
+    /* ============================================================
+       BARRA TOPO — CREDENCIAL
+    ============================================================ */
+    .topbar {
+      background: var(--navy);
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+    }
+    .topbar-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .topbar-left {
+      display: flex; align-items: center; gap: 24px;
+    }
+    .topbar-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; color: rgba(255,255,255,0.6);
+      font-weight: 400; letter-spacing: 0.03em;
+    }
+    .topbar-item span.dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+    .topbar-item strong { color: var(--gold-light); font-weight: 600; }
+    .topbar-cta-mini {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 5px 16px; border-radius: 100px;
+      transition: all 0.3s;
+    }
+    .topbar-cta-mini:hover { background: var(--gold); color: var(--navy); }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    nav {
+      position: sticky; top: 0; z-index: 900;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.shadow { box-shadow: var(--shadow-md); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+
+    /* Logo */
+    .logo { display: flex; align-items: center; gap: 14px; }
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .logo-icon::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--gold);
+    }
+    .logo-icon svg { width: 24px; height: 24px; }
+    .logo-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-name {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 700;
+      color: var(--navy); letter-spacing: 0.01em;
+    }
+    .logo-name span { color: var(--gold); }
+    .logo-sub {
+      font-size: 9.5px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--silver);
+    }
+
+    /* Nav links */
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500; color: var(--text-mid);
+      letter-spacing: 0.02em; transition: color 0.25s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--gold);
+      border-radius: 1px; transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-btn {
+      background: var(--navy); color: white !important;
+      padding: 10px 24px; border-radius: 8px;
+      font-size: 13px !important; font-weight: 600 !important;
+      letter-spacing: 0.06em !important;
+      transition: all 0.3s ease !important;
+      white-space: nowrap;
+    }
+    .nav-btn::after { display: none !important; }
+    .nav-btn:hover {
+      background: var(--gold) !important;
+      color: var(--navy) !important;
+      box-shadow: var(--shadow-gold) !important;
+      transform: translateY(-2px);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; padding: 6px;
+    }
+    .hamburger span {
+      width: 26px; height: 2px;
+      background: var(--navy); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mob-menu {
+      display: none; position: fixed;
+      inset: 0; z-index: 9998;
+      background: var(--navy);
+      flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu a {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 400; color: white;
+      letter-spacing: 0.02em; transition: color 0.3s;
+    }
+    .mob-menu a:hover { color: var(--gold); }
+    .mob-close {
+      position: absolute; top: 24px; right: 28px;
+      background: none; border: none; color: var(--silver);
+      font-size: 30px; line-height: 1;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      background: var(--navy);
+      position: relative; overflow: hidden;
+      padding: 100px 0 80px;
+      min-height: 92vh;
+      display: flex; align-items: center;
+    }
+
+    /* Grade de fundo sutil */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Blob decorativo */
+    .hero-blob {
+      position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,58,107,0.8) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-blob-2 {
+      position: absolute; bottom: -150px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Linha dourada lateral */
+    .hero-line {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    }
+
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 80px; align-items: center;
+      position: relative; z-index: 2;
+      width: 100%;
+    }
+
+    /* Eyebrow */
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+    }
+    .eyebrow-badge {
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .eyebrow-line { width: 1px; height: 20px; background: rgba(201,168,76,0.4); }
+    .eyebrow-text {
+      font-size: 12px; font-weight: 500; color: var(--silver);
+      letter-spacing: 0.08em;
+    }
+
+    /* Headline */
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 900; line-height: 1.06;
+      color: white; margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 .accent { color: var(--gold); }
+    .hero h1 .stroke {
+      -webkit-text-stroke: 1.5px rgba(255,255,255,0.4);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 17px; line-height: 1.75; font-weight: 300;
+      color: rgba(255,255,255,0.6); margin-bottom: 44px;
+      max-width: 560px;
+    }
+    .hero-sub strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    /* CTAs */
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px; }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy); padding: 16px 36px;
+      border-radius: 9px; border: none;
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: all 0.3s ease; display: inline-flex;
+      align-items: center; gap: 10px;
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 48px rgba(201,168,76,0.45);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: white; padding: 15px 32px;
+      border-radius: 9px; border: 1.5px solid rgba(255,255,255,0.2);
+      font-size: 14px; font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: all 0.3s; display: inline-flex;
+      align-items: center; gap: 10px;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* Selos de autoridade hero */
+    .hero-trust {
+      display: flex; gap: 32px; align-items: center;
+      padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 12px; }
+    .trust-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .trust-label { font-size: 12px; color: rgba(255,255,255,0.45); }
+    .trust-value { font-size: 15px; font-weight: 600; color: white; margin-top: 1px; }
+
+    /* Card direito hero — CTA rápido */
+    .hero-card {
+      background: white; border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+      border-top: 4px solid var(--gold);
+      position: relative;
+    }
+    .hero-card-tag {
+      position: absolute; top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold); color: var(--navy);
+      font-size: 11px; font-weight: 800;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 5px 18px; border-radius: 100px;
+      white-space: nowrap;
+    }
+    .hero-card h3 {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700;
+      color: var(--navy); margin-bottom: 8px;
+      text-align: center; margin-top: 12px;
+    }
+    .hero-card p {
+      font-size: 13px; color: var(--text-muted);
+      text-align: center; margin-bottom: 28px; line-height: 1.6;
+    }
+
+    .hc-form { display: flex; flex-direction: column; gap: 14px; }
+    .hc-input {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--steel);
+      border-radius: 9px; background: var(--off-white);
+      font-family: var(--font-body); font-size: 14px;
+      color: var(--text-dark); outline: none;
+      transition: all 0.3s; -webkit-appearance: none;
+    }
+    .hc-input:focus {
+      border-color: var(--navy);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(11,31,58,0.08);
+    }
+    .hc-select {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--steel);
+      border-radius: 9px; background: var(--off-white);
+      font-family: var(--font-body); font-size: 14px;
+      color: var(--text-dark); outline: none;
+      transition: all 0.3s; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A9BB0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+    .hc-select:focus { border-color: var(--navy); background-color: white; }
+    .hc-btn {
+      width: 100%; background: var(--navy); color: white;
+      border: none; border-radius: 9px;
+      padding: 15px; font-family: var(--font-body);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: all 0.3s; margin-top: 4px;
+    }
+    .hc-btn:hover {
+      background: var(--gold); color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold);
+    }
+    .hc-privacy {
+      font-size: 11px; color: var(--text-muted);
+      text-align: center; margin-top: 12px;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+    }
+
+    /* ============================================================
+       FAIXA CLIENTES / VALIDAÇÃO
+    ============================================================ */
+    .validation-strip {
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .validation-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .val-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--silver);
+      white-space: nowrap;
+    }
+    .val-divider { width: 1px; height: 32px; background: var(--border); }
+    .val-items { display: flex; gap: 32px; flex-wrap: wrap; }
+    .val-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 500; color: var(--text-mid);
+    }
+    .val-item-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* ============================================================
+       SECTION BASE
+    ============================================================ */
+    section { padding: 100px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    .sec-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 18px;
+    }
+    .sec-tag-line {
+      width: 36px; height: 2px;
+      background: var(--gold); border-radius: 1px;
+    }
+    .sec-tag span {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .sec-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.5vw, 48px);
+      font-weight: 700; line-height: 1.12;
+      color: var(--navy);
+    }
+    .sec-title em { font-style: italic; color: var(--navy-light); }
+    .sec-sub {
+      font-size: 16px; line-height: 1.75; color: var(--text-muted);
+      max-width: 560px; margin-top: 16px;
+    }
+
+    /* ============================================================
+       PROBLEMA / DOR
+    ============================================================ */
+    .problem { background: var(--off-white); }
+    .problem-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .problem-visual {
+      background: white; border-radius: var(--radius-xl);
+      padding: 48px; border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      position: relative; overflow: hidden;
+    }
+    .problem-visual::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+    }
+    .pv-title {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 700; color: var(--navy);
+      margin-bottom: 28px;
+    }
+    .pain-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .pain-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px; border-radius: var(--radius);
+      background: var(--off-white); border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .pain-item:hover {
+      border-color: rgba(201,168,76,0.4);
+      background: white;
+      transform: translateX(6px);
+      box-shadow: var(--shadow-sm);
+    }
+    .pain-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(11,31,58,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; flex-shrink: 0;
+    }
+    .pain-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+    .pain-text strong { color: var(--navy); font-weight: 600; display: block; margin-bottom: 2px; }
+
+    /* Solução texto */
+    .solution-text .highlight-box {
+      background: var(--navy); border-radius: var(--radius-lg);
+      padding: 32px; margin-top: 36px; position: relative;
+      overflow: hidden;
+    }
+    .solution-text .highlight-box::before {
+      content: '"';
+      position: absolute; top: -10px; left: 20px;
+      font-family: var(--font-display);
+      font-size: 120px; line-height: 1; color: rgba(201,168,76,0.1);
+      pointer-events: none;
+    }
+    .highlight-box p {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 400; font-style: italic;
+      color: white; line-height: 1.5; position: relative; z-index: 1;
+    }
+    .highlight-box span {
+      display: block; margin-top: 16px;
+      font-family: var(--font-body);
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       SERVIÇOS — PONTA A PONTA
+    ============================================================ */
+    .services { background: white; }
+    .services-intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: end; margin-bottom: 64px;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .srv-card {
+      background: var(--off-white);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    .srv-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .srv-card:hover {
+      background: white; transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(201,168,76,0.3);
+    }
+    .srv-card:hover::after { transform: scaleX(1); }
+
+    .srv-num {
+      font-family: var(--font-display);
+      font-size: 48px; font-weight: 900; line-height: 1;
+      color: rgba(11,31,58,0.06);
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+    }
+    .srv-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px;
+      transition: background 0.3s;
+    }
+    .srv-card:hover .srv-icon { background: var(--gold); }
+
+    .srv-title {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 700;
+      color: var(--navy); margin-bottom: 12px; line-height: 1.2;
+    }
+    .srv-desc {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.75; margin-bottom: 20px;
+    }
+    .srv-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .srv-tag {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.06em; padding: 4px 10px;
+      border-radius: 100px; border: 1px solid var(--steel);
+      color: var(--text-mid);
+      background: white;
+    }
+
+    /* Card destaque */
+    .srv-card.featured {
+      background: var(--navy); border-color: transparent;
+    }
+    .srv-card.featured .srv-num { color: rgba(255,255,255,0.05); }
+    .srv-card.featured .srv-icon { background: rgba(201,168,76,0.15); }
+    .srv-card.featured .srv-title { color: white; }
+    .srv-card.featured .srv-desc { color: rgba(255,255,255,0.55); }
+    .srv-card.featured .srv-tag {
+      border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.1);
+      color: var(--gold-light);
+    }
+    .srv-card.featured:hover { background: var(--navy-mid); }
+    .srv-card.featured::after { background: var(--gold); }
+
+    /* ============================================================
+       LINHA DO TEMPO — PONTA A PONTA
+    ============================================================ */
+    .timeline-section { background: var(--navy); padding: 100px 0; }
+    .timeline-header { text-align: center; margin-bottom: 72px; }
+    .timeline-header .sec-title { color: white; }
+    .timeline-header .sec-sub { color: rgba(255,255,255,0.5); margin: 16px auto 0; text-align: center; }
+
+    .timeline {
+      position: relative; max-width: 900px; margin: 0 auto;
+    }
+    /* Linha central */
+    .timeline::before {
+      content: '';
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 1px; background: rgba(201,168,76,0.2);
+      transform: translateX(-50%);
+    }
+    .tl-step {
+      display: grid; grid-template-columns: 1fr 60px 1fr;
+      gap: 0; align-items: start; margin-bottom: 56px;
+    }
+    .tl-step:last-child { margin-bottom: 0; }
+
+    .tl-content {
+      padding: 28px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      transition: all 0.3s;
+    }
+    .tl-content:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(201,168,76,0.25);
+    }
+    .tl-step.right .tl-content { grid-column: 3; }
+    .tl-step.left .tl-content { grid-column: 1; }
+    .tl-step.right .tl-empty { grid-column: 1; }
+    .tl-step.left .tl-empty { grid-column: 3; }
+
+    .tl-center {
+      grid-column: 2;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 24px;
+    }
+    .tl-dot {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--navy);
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 16px;
+      font-weight: 700; color: var(--gold);
+      position: relative; z-index: 1; flex-shrink: 0;
+    }
+    .tl-phase {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .tl-title {
+      font-family: var(--font-display);
+      font-size: 19px; font-weight: 700; color: white; margin-bottom: 8px;
+    }
+    .tl-desc { font-size: 13.5px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+    /* ============================================================
+       DIFERENCIAIS
+    ============================================================ */
+    .diff-section { background: var(--off-white); }
+    .diff-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .diff-cards { display: flex; flex-direction: column; gap: 16px; }
+    .diff-card {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: white; border-radius: var(--radius-lg);
+      padding: 24px; border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .diff-card:hover {
+      border-color: var(--border-gold);
+      box-shadow: var(--shadow-md);
+      transform: translateX(6px);
+    }
+    .diff-icon {
+      width: 50px; height: 50px; border-radius: 14px;
+      background: var(--navy); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+      transition: background 0.3s;
+    }
+    .diff-card:hover .diff-icon { background: var(--gold); }
+    .diff-card h4 {
+      font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px;
+    }
+    .diff-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; }
+
+    /* Números direito */
+    .diff-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .diff-num-card {
+      background: white; border-radius: var(--radius-lg);
+      padding: 32px 24px; text-align: center;
+      border: 1px solid var(--border);
+      transition: all 0.35s;
+    }
+    .diff-num-card:hover {
+      border-color: var(--border-gold);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-6px);
+    }
+    .diff-num-card.navy-card {
+      background: var(--navy); border-color: transparent;
+    }
+    .diff-num-big {
+      font-family: var(--font-display);
+      font-size: 52px; font-weight: 900; line-height: 1;
+      color: var(--navy); margin-bottom: 8px;
+    }
+    .diff-num-big .gold { color: var(--gold); }
+    .navy-card .diff-num-big { color: white; }
+    .diff-num-label { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+    .navy-card .diff-num-label { color: rgba(255,255,255,0.45); }
+
+    /* ============================================================
+       SÓCIOS
+    ============================================================ */
+    .partners { background: white; }
+    .partners-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; margin-top: 60px;
+    }
+    .partner-card {
+      background: var(--off-white); border-radius: var(--radius-xl);
+      padding: 44px 40px;
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: all 0.35s;
+    }
+    .partner-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--navy), var(--gold));
+    }
+    .partner-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .partner-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 32px; font-weight: 700; color: var(--gold);
+      margin-bottom: 20px; border: 3px solid var(--gold);
+    }
+    .partner-name {
+      font-family: var(--font-display);
+      font-size: 26px; font-weight: 700;
+      color: var(--navy); margin-bottom: 4px;
+    }
+    .partner-title {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .partner-bio {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.75; margin-bottom: 24px;
+    }
+    .partner-exp {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--navy); border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+    .partner-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .partner-tag {
+      font-size: 11.5px; color: var(--text-mid);
+      border: 1px solid var(--steel);
+      border-radius: 100px; padding: 4px 12px;
+      background: white;
+    }
+
+    /* ============================================================
+       DEPOIMENTOS
+    ============================================================ */
+    .testimonials { background: var(--off-white); }
+    .test-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 60px;
+    }
+    .test-card {
+      background: white; border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      transition: all 0.35s; position: relative;
+    }
+    .test-card::before {
+      content: '"';
+      font-family: var(--font-display); font-size: 80px;
+      line-height: 1; color: var(--steel);
+      position: absolute; top: 16px; left: 28px;
+    }
+    .test-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-gold);
+    }
+    .test-stars {
+      font-size: 14px; color: var(--gold);
+      letter-spacing: 2px; margin-bottom: 16px; padding-top: 36px;
+    }
+    .test-text {
+      font-size: 14px; color: var(--text-mid);
+      line-height: 1.8; margin-bottom: 28px;
+    }
+    .test-author { display: flex; align-items: center; gap: 14px; }
+    .test-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 20px;
+      font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .test-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+    .test-detail { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .test-card.featured-t {
+      background: var(--navy); border-color: transparent;
+    }
+    .test-card.featured-t::before { color: rgba(201,168,76,0.12); }
+    .test-card.featured-t .test-text { color: rgba(255,255,255,0.6); }
+    .test-card.featured-t .test-name { color: white; }
+
+    /* ============================================================
+       CTA SEÇÃO RESULTADO
+    ============================================================ */
+    .resultado { background: white; }
+    .resultado-inner {
+      background: var(--navy); border-radius: var(--radius-xl);
+      padding: 80px; position: relative; overflow: hidden;
+    }
+    .resultado-inner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .resultado-inner::after {
+      content: '';
+      position: absolute; right: -100px; top: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    }
+    .resultado-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .resultado-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 900; color: white; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .resultado-title .gold { color: var(--gold); }
+    .resultado-sub {
+      font-size: 16px; color: rgba(255,255,255,0.55);
+      line-height: 1.75; margin-bottom: 36px;
+    }
+    .check-list { display: flex; flex-direction: column; gap: 12px; }
+    .check-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 14px; color: rgba(255,255,255,0.75);
+    }
+    .check-mark {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(201,168,76,0.2); border: 1px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--gold); flex-shrink: 0; margin-top: 2px;
+    }
+
+    /* Formulário resultado */
+    .resultado-form {
+      background: white; border-radius: var(--radius-xl);
+      padding: 44px 40px; border-top: 4px solid var(--gold);
+    }
+    .rf-title {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700; color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .rf-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
+    .rf-group { margin-bottom: 16px; }
+    .rf-label {
+      display: block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--navy); margin-bottom: 7px;
+    }
+    .rf-input, .rf-select, .rf-textarea {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--steel);
+      border-radius: 9px; background: var(--off-white);
+      font-family: var(--font-body); font-size: 14px;
+      color: var(--text-dark); outline: none; transition: all 0.3s;
+      -webkit-appearance: none;
+    }
+    .rf-input:focus, .rf-select:focus, .rf-textarea:focus {
+      border-color: var(--navy);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(11,31,58,0.08);
+    }
+    .rf-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A9BB0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center;
+      padding-right: 40px; background-color: var(--off-white);
+    }
+    .rf-textarea { resize: vertical; min-height: 100px; }
+    .rf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .rf-submit {
+      width: 100%; background: var(--navy); color: white;
+      border: none; border-radius: 9px; padding: 16px;
+      font-family: var(--font-body); font-size: 14px;
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: all 0.3s; margin-top: 6px;
+    }
+    .rf-submit:hover {
+      background: var(--gold); color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold);
+    }
+    .wa-btn-full {
+      width: 100%; background: #25D366; color: white;
+      border: none; border-radius: 9px; padding: 15px;
+      font-family: var(--font-body); font-size: 14px;
+      font-weight: 700; letter-spacing: 0.05em;
+      transition: all 0.3s; margin-top: 10px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      text-decoration: none;
+    }
+    .wa-btn-full:hover {
+      background: #1ebe5d; transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    }
+    .rf-divider {
+      text-align: center; font-size: 11px; color: var(--silver);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin: 4px 0; position: relative;
+    }
+
+    /* ============================================================
+       FAQ
+    ============================================================ */
+    .faq { background: var(--off-white); }
+    .faq-layout {
+      display: grid; grid-template-columns: 380px 1fr;
+      gap: 80px; align-items: start;
+    }
+    .faq-sticky { position: sticky; top: 100px; }
+    .faq-cta-box {
+      background: var(--navy); border-radius: var(--radius-lg);
+      padding: 36px 32px; margin-top: 36px;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .faq-cta-box h4 {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 700; color: white; margin-bottom: 12px;
+    }
+    .faq-cta-box p { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 20px; line-height: 1.6; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-btn-el {
+      width: 100%; display: flex; justify-content: space-between;
+      align-items: center; padding: 24px 0;
+      background: none; border: none; text-align: left;
+    }
+    .faq-q {
+      font-size: 16px; font-weight: 600; color: var(--navy);
+      flex: 1; padding-right: 20px; line-height: 1.4;
+    }
+    .faq-chevron {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1.5px solid var(--steel);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy); font-size: 18px; flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .faq-item.open .faq-chevron {
+      background: var(--navy); border-color: var(--navy);
+      color: var(--gold); transform: rotate(45deg);
+    }
+    .faq-ans {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    .faq-ans.open { max-height: 400px; }
+    .faq-ans p {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.8; padding-bottom: 24px;
+    }
+
+    /* ============================================================
+       RODAPÉ
+    ============================================================ */
+    footer {
+      background: var(--navy); padding: 80px 0 40px;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 60px;
+    }
+    .footer-brand p {
+      font-size: 14px; color: rgba(255,255,255,0.38);
+      line-height: 1.75; margin-top: 18px; max-width: 290px;
+    }
+    .footer-oab {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 20px; padding: 8px 14px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .footer-col h4 {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.25);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col a {
+      font-size: 14px; color: rgba(255,255,255,0.5); transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.22); }
+    .footer-bottom a { color: var(--gold); }
+
+    /* ============================================================
+       WHATSAPP FLOAT
+    ============================================================ */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 8888;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+      transition: all 0.3s; text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 14px 48px rgba(37,211,102,0.65); }
+    .wa-float::before {
+      content: ''; position: absolute; inset: -6px; border-radius: 50%;
+      border: 2px solid #25D366; opacity: 0.5;
+      animation: wa-ring 2.5s ease-out infinite;
+    }
+    @keyframes wa-ring { 0%{transform:scale(1);opacity:.5} 100%{transform:scale(1.7);opacity:0} }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    .back-top {
+      position: fixed; bottom: 28px; left: 28px; z-index: 8888;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--navy); border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold); font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: all 0.3s; text-decoration: none;
+    }
+    .back-top.show { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--gold); color: var(--navy); transform: translateY(-3px); }
+
+    /* ============================================================
+       RESPONSIVIDADE
+    ============================================================ */
+    @media(max-width:1024px){
+      .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+      .hero { min-height: auto; padding: 80px 0 60px; }
+      .hero-card { max-width: 480px; }
+      .problem-grid, .services-intro, .diff-grid,
+      .resultado-grid, .faq-layout, .partners-grid { grid-template-columns: 1fr; gap: 48px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .diff-numbers { grid-template-columns: 1fr 1fr; }
+      .faq-sticky { position: static; }
+      .resultado-inner { padding: 60px 40px; }
+      .timeline::before { display: none; }
+      .tl-step { grid-template-columns: 1fr; }
+      .tl-step.right .tl-content,
+      .tl-step.left .tl-content { grid-column: 1; }
+      .tl-center { display: none; }
+    }
+    @media(max-width:768px){
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .topbar-left { flex-wrap: wrap; gap: 10px; }
+      .val-divider { display: none; }
+      section { padding: 72px 0; }
+      .resultado-inner { padding: 40px 28px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .rf-row { grid-template-columns: 1fr; }
+      .hero-trust { gap: 20px; }
+      .partners-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width:480px){
+      .diff-numbers { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     BARRA TOPO
+============================================================ -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <div class="topbar-item">
+        <span class="dot"></span>
+        Mais de <strong>&nbsp;20 anos</strong>&nbsp; de experiência em licitações públicas
+      </div>
+      <div class="topbar-item">
+        <span class="dot"></span>
+        Atendimento em todo o Brasil
+      </div>
+    </div>
+    <a href="#contato" class="topbar-cta-mini">Fale com um especialista →</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <!-- Ícone balança / coluna -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="11" y="3" width="2" height="18" rx="1" fill="#C9A84C"/>
+          <rect x="4" y="8" width="16" height="1.5" rx="0.75" fill="white" opacity="0.8"/>
+          <circle cx="7" cy="15" r="3" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+          <circle cx="17" cy="13" r="3" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="logo-wordmark">
+        <span class="logo-name">Lex <span>Pública</span></span>
+        <span class="logo-sub">Consultoria em Licitações</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#processo">Como Funciona</a></li>
+      <li><a href="#socios">Nossa Equipe</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+      <li><a href="#contato" class="nav-btn">Consultoria Gratuita</a></li>
+    </ul>
+
+    <button class="hamburger" onclick="toggleMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Menu Mobile -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="toggleMob()">✕</button>
+  <a href="#servicos" onclick="toggleMob()">Serviços</a>
+  <a href="#processo" onclick="toggleMob()">Como Funciona</a>
+  <a href="#socios" onclick="toggleMob()">Nossa Equipe</a>
+  <a href="#faq" onclick="toggleMob()">Dúvidas</a>
+  <a href="#contato" onclick="toggleMob()" style="color:var(--gold)">Consultoria Gratuita →</a>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero" id="inicio">
+  <div class="hero-blob"></div>
+  <div class="hero-blob-2"></div>
+  <div class="hero-line"></div>
+
+  <div class="hero-inner">
+    <!-- Esquerda -->
+    <div>
+      <div class="hero-eyebrow" data-aos="fade-right">
+        <span class="eyebrow-badge">20+ Anos de Mercado</span>
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Licitações Públicas · Lei 14.133/2021</span>
+      </div>
+
+      <h1 data-aos="fade-up" data-aos-delay="80">
+        Sua empresa<br/>
+        habilitada para<br/>
+        <span class="accent">vencer</span> licitações<br/>
+        <span class="stroke">públicas.</span>
+      </h1>
+
+      <p class="hero-sub" data-aos="fade-up" data-aos-delay="160">
+        Assessoria <strong>completa de ponta a ponta</strong> — da análise do edital à assinatura do contrato. Deixe os especialistas cuidarem da burocracia enquanto você foca no seu negócio.
+      </p>
+
+      <div class="hero-ctas" data-aos="fade-up" data-aos-delay="240">
+        <a href="#contato" class="btn-gold">
+          Consultoria Gratuita
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+        <a href="#processo" class="btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="8" cy="8" r="7"/><path d="M6 8h4M8 6l2 2-2 2"/>
+          </svg>
+          Ver como funciona
+        </a>
+      </div>
+
+      <div class="hero-trust" data-aos="fade-up" data-aos-delay="320">
+        <div class="trust-item">
+          <div class="trust-icon">🏛️</div>
+          <div>
+            <div class="trust-label">Nova Lei de Licitações</div>
+            <div class="trust-value">Lei 14.133/2021</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">📋</div>
+          <div>
+            <div class="trust-label">Contratos firmados</div>
+            <div class="trust-value">R$ 80 Mi+ captados</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🇧🇷</div>
+          <div>
+            <div class="trust-label">Abrangência</div>
+            <div class="trust-value">Todo o Brasil</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card CTA rápido -->
+    <div data-aos="fade-left" data-aos-delay="200">
+      <div class="hero-card">
+        <div class="hero-card-tag">Avaliação Sem Custo</div>
+        <h3>Quero participar de licitações</h3>
+        <p>Fale com um especialista agora e descubra o potencial do seu negócio no mercado público.</p>
+
+        <form class="hc-form" action="https://formspree.io/f/SEU_ID" method="POST">
+          <input type="text" name="nome" class="hc-input" placeholder="Nome completo" required/>
+          <input type="tel" name="whatsapp" class="hc-input" placeholder="WhatsApp com DDD" required/>
+          <input type="text" name="empresa" class="hc-input" placeholder="Nome da empresa"/>
+          <select name="segmento" class="hc-select">
+            <option value="">Segmento da empresa</option>
+            <option>Tecnologia da Informação</option>
+            <option>Construção Civil e Obras</option>
+            <option>Saúde e Equipamentos Médicos</option>
+            <option>Alimentação e Gêneros</option>
+            <option>Serviços de Limpeza / Vigilância</option>
+            <option>Mobiliário e Material de Escritório</option>
+            <option>Consultoria e Serviços Técnicos</option>
+            <option>Outro segmento</option>
+          </select>
+          <button type="submit" class="hc-btn">QUERO MINHA CONSULTORIA GRATUITA →</button>
+        </form>
+        <p class="hc-privacy">🔒 Seus dados são confidenciais. Sem spam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAIXA VALIDAÇÃO
+============================================================ -->
+<div class="validation-strip">
+  <div class="validation-inner">
+    <span class="val-label">Atuamos em</span>
+    <div class="val-divider"></div>
+    <div class="val-items">
+      <div class="val-item"><div class="val-item-dot"></div>Pregão Eletrônico</div>
+      <div class="val-item"><div class="val-item-dot"></div>Concorrência Pública</div>
+      <div class="val-item"><div class="val-item-dot"></div>Tomada de Preços</div>
+      <div class="val-item"><div class="val-item-dot"></div>Dispensa e Inexigibilidade</div>
+      <div class="val-item"><div class="val-item-dot"></div>Recursos e Impugnações</div>
+      <div class="val-item"><div class="val-item-dot"></div>PNCP · ComprasNet · BLL</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     O PROBLEMA QUE RESOLVEMOS
+============================================================ -->
+<section class="problem" id="problema">
+  <div class="container">
+    <div class="problem-grid">
+      <!-- Visual -->
+      <div data-aos="fade-right">
+        <div class="problem-visual">
+          <p class="pv-title">Você já passou por alguma dessas situações?</p>
+          <ul class="pain-list">
+            <li class="pain-item">
+              <div class="pain-icon">📄</div>
+              <div class="pain-text">
+                <strong>Edital complexo e cheio de exigências</strong>
+                Requisitos técnicos e habilitação que parecem impossíveis de cumprir sem orientação especializada.
+              </div>
+            </li>
+            <li class="pain-item">
+              <div class="pain-icon">⏱️</div>
+              <div class="pain-text">
+                <strong>Prazo curto e proposta mal estruturada</strong>
+                Perda de oportunidades por erros na elaboração da proposta comercial ou técnica.
+              </div>
+            </li>
+            <li class="pain-item">
+              <div class="pain-icon">❌</div>
+              <div class="pain-text">
+                <strong>Inabilitado por documentação incompleta</strong>
+                Empresa desclassificada por falta de um documento ou certidão desatualizada.
+              </div>
+            </li>
+            <li class="pain-item">
+              <div class="pain-icon">🔍</div>
+              <div class="pain-text">
+                <strong>Dificuldade em encontrar as oportunidades certas</strong>
+                Editais espalhados em dezenas de portais, sem saber quais valem o investimento.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Solução -->
+      <div class="solution-text" data-aos="fade-left" data-aos-delay="100">
+        <div class="sec-tag">
+          <div class="sec-tag-line"></div>
+          <span>Nossa Proposta</span>
+        </div>
+        <h2 class="sec-title">
+          Nós cuidamos de<br/>tudo isso <em>por você.</em>
+        </h2>
+        <p class="sec-sub">
+          A Lex Pública nasceu para ser a extensão jurídica e estratégica da sua empresa no mercado de licitações. Você não precisa ser expert em legislação pública — é para isso que existimos.
+        </p>
+        <p class="sec-sub" style="margin-top:16px">
+          Com mais de <strong style="color:var(--navy)">20 anos de experiência acumulada pelos nossos sócios</strong>, já mapeamos cada armadilha, cada detalhe técnico e cada oportunidade que a maioria das empresas deixa passar.
+        </p>
+
+        <div class="highlight-box">
+          <p>"Enquanto sua equipe foca no negócio, nossa equipe foca em garantir que você chegue ao contrato."</p>
+          <span>— Equipe Lex Pública</span>
+        </div>
+
+        <a href="#contato" class="btn-gold" style="margin-top:36px;display:inline-flex">
+          Quero resolver isso agora →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVIÇOS
+============================================================ -->
+<section class="services" id="servicos">
+  <div class="container">
+    <div class="services-intro">
+      <div data-aos="fade-up">
+        <div class="sec-tag">
+          <div class="sec-tag-line"></div>
+          <span>Nossos Serviços</span>
+        </div>
+        <h2 class="sec-title">
+          Tudo que sua empresa<br/>precisa para <em>vencer</em>
+        </h2>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <p class="sec-sub">
+          Cobertura completa em todas as etapas do processo licitatório — desde a prospecção de oportunidades até a gestão do contrato firmado.
+        </p>
+        <a href="#contato" style="display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--navy)">
+          Falar com especialista <span style="color:var(--gold)">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="srv-card" data-aos="fade-up">
+        <div class="srv-num">01</div>
+        <div class="srv-icon">🔎</div>
+        <h3 class="srv-title">Prospecção e Monitoramento de Editais</h3>
+        <p class="srv-desc">Mapeamos oportunidades alinhadas ao perfil da sua empresa em todos os portais públicos — federal, estadual e municipal — filtrando por segmento, região e viabilidade.</p>
+        <div class="srv-tags">
+          <span class="srv-tag">ComprasNet</span>
+          <span class="srv-tag">PNCP</span>
+          <span class="srv-tag">BLL</span>
+          <span class="srv-tag">Licitanet</span>
+        </div>
+      </div>
+
+      <div class="srv-card featured" data-aos="fade-up" data-aos-delay="80">
+        <div class="srv-num">02</div>
+        <div class="srv-icon">📑</div>
+        <h3 class="srv-title">Análise Técnica e Jurídica de Editais</h3>
+        <p class="srv-desc">Lemos cada cláusula, identificamos riscos, exigências de habilitação e oportunidades de impugnação. Você recebe um parecer claro antes de decidir participar ou não.</p>
+        <div class="srv-tags">
+          <span class="srv-tag">Lei 14.133/2021</span>
+          <span class="srv-tag">Decreto 10.024/19</span>
+          <span class="srv-tag">Parecer técnico</span>
+        </div>
+      </div>
+
+      <div class="srv-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="srv-num">03</div>
+        <div class="srv-icon">📂</div>
+        <h3 class="srv-title">Regularização e Habilitação</h3>
+        <p class="srv-desc">Organizamos toda a documentação exigida: certidões fiscais, trabalhistas, qualificação técnica e econômica. Garantimos que sua empresa não seja inabilitada por falhas documentais.</p>
+        <div class="srv-tags">
+          <span class="srv-tag">CND Federal</span>
+          <span class="srv-tag">FGTS</span>
+          <span class="srv-tag">CREA / CFM</span>
+          <span class="srv-tag">Balanço</span>
+        </div>
+      </div>
+
+      <div class="srv-card" data-aos="fade-up" data-aos-delay="40">
+        <div class="srv-num">04</div>
+        <div class="srv-icon">💼</div>
+        <h3 class="srv-title">Elaboração de Propostas Vencedoras</h3>
+        <p class="srv-desc">Estruturamos propostas técnicas e comerciais estratégicas, com precificação competitiva que maximiza sua margem e aumenta a probabilidade de vitória no certame.</p>
+        <div class="srv-tags">
+          <span class="srv-tag">Proposta técnica</span>
+          <span class="srv-tag">Precificação</span>
+          <span class="srv-tag">Estratégia de lance</span>
+        </div>
+      </div>
+
+      <div class="srv-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="srv-num">05</div>
+        <div class="srv-icon">⚖️</div>
+        <h3 class="srv-title">Recursos, Impugnações e Contestações</h3>
+        <p class="srv-desc">Elaboramos impugnações de editais, recursos administrativos e pedidos de esclarecimento com fundamentos jurídicos sólidos para proteger seus interesses em cada fase.</p>
+        <div class="srv-tags">
+          <span class="srv-tag">Recurso administrativo</span>
+          <span class="srv-tag">Impugnação</span>
+          <span class="srv-tag">Contrarrazões</span>
+        </div>
+      </div>
+
+      <div class="srv-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="srv-num">06</div>
+        <div class="srv-icon">🤝</div>
+        <h3 class="srv-title">Gestão e Execução do Contrato</h3>
+        <p class="srv-desc">Após a vitória, acompanhamos a assinatura do contrato, aditivos, reequilíbrios econômico-financeiros e adequações legais durante toda a vigência contratual.</p>
+        <div class="srv-tags">
+          <span class="srv-tag">Aditivos</span>
+          <span class="srv-tag">Reequilíbrio</span>
+          <span class="srv-tag">Fiscalização</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LINHA DO TEMPO — PONTA A PONTA
+============================================================ -->
+<section class="timeline-section" id="processo">
+  <div class="container">
+    <div class="timeline-header" data-aos="fade-up">
+      <div class="sec-tag" style="justify-content:center">
+        <div class="sec-tag-line"></div>
+        <span>Metodologia</span>
+      </div>
+      <h2 class="sec-title" style="color:white">Acompanhamento <em style="color:var(--gold)">ponta a ponta</em></h2>
+      <p class="sec-sub">Da identificação da oportunidade até a execução do contrato. Cada etapa com suporte especializado.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-step right" data-aos="fade-right">
+        <div class="tl-content">
+          <div class="tl-phase">Fase 01 — Prospecção</div>
+          <h3 class="tl-title">Diagnóstico e Mapeamento</h3>
+          <p class="tl-desc">Analisamos o perfil da sua empresa, CNAE, capacidade técnica e financeira, e identificamos os segmentos e portais com maior potencial de retorno.</p>
+        </div>
+        <div class="tl-center"><div class="tl-dot">1</div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <div class="tl-step left" data-aos="fade-left">
+        <div class="tl-empty"></div>
+        <div class="tl-center"><div class="tl-dot">2</div></div>
+        <div class="tl-content">
+          <div class="tl-phase">Fase 02 — Análise</div>
+          <h3 class="tl-title">Triagem e Parecer do Edital</h3>
+          <p class="tl-desc">Filtramos os editais relevantes e emitimos parecer técnico-jurídico completo. Você decide se participa com segurança e clareza sobre os riscos e oportunidades.</p>
+        </div>
+      </div>
+
+      <div class="tl-step right" data-aos="fade-right">
+        <div class="tl-content">
+          <div class="tl-phase">Fase 03 — Habilitação</div>
+          <h3 class="tl-title">Documentação e Regularidade</h3>
+          <p class="tl-desc">Checamos e organizamos toda a documentação exigida, orientamos a obtenção de certidões e garantimos que você chegue à sessão sem risco de inabilitação.</p>
+        </div>
+        <div class="tl-center"><div class="tl-dot">3</div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <div class="tl-step left" data-aos="fade-left">
+        <div class="tl-empty"></div>
+        <div class="tl-center"><div class="tl-dot">4</div></div>
+        <div class="tl-content">
+          <div class="tl-phase">Fase 04 — Proposta</div>
+          <h3 class="tl-title">Elaboração Estratégica da Proposta</h3>
+          <p class="tl-desc">Estruturamos a proposta técnica e comercial com foco em competitividade, considerando os critérios de julgamento e o histórico de preços do item licitado.</p>
+        </div>
+      </div>
+
+      <div class="tl-step right" data-aos="fade-right">
+        <div class="tl-content">
+          <div class="tl-phase">Fase 05 — Disputa</div>
+          <h3 class="tl-title">Sessão Pública e Lances</h3>
+          <p class="tl-desc">Nossa equipe acompanha a sessão de lances em tempo real, com estratégia definida para maximizar as chances de vitória dentro da sua margem de lucratividade.</p>
+        </div>
+        <div class="tl-center"><div class="tl-dot">5</div></div>
+        <div class="tl-empty"></div>
+      </div>
+
+      <div class="tl-step left" data-aos="fade-left">
+        <div class="tl-empty"></div>
+        <div class="tl-center"><div class="tl-dot">6</div></div>
+        <div class="tl-content">
+          <div class="tl-phase">Fase 06 — Pós-vitória</div>
+          <h3 class="tl-title">Contrato, Aditivos e Gestão</h3>
+          <p class="tl-desc">Após a vitória, assessoramos a assinatura do contrato, acompanhamos reajustes, aditivos e eventuais questões durante toda a execução contratual.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DIFERENCIAIS + NÚMEROS
+============================================================ -->
+<section class="diff-section">
+  <div class="container">
+    <div class="diff-grid">
+      <!-- Diferenciais -->
+      <div data-aos="fade-right">
+        <div class="sec-tag">
+          <div class="sec-tag-line"></div>
+          <span>Diferenciais</span>
+        </div>
+        <h2 class="sec-title">
+          Por que escolher<br/>a <em>Lex Pública?</em>
+        </h2>
+        <p class="sec-sub">Não somos apenas consultores — somos parceiros estratégicos comprometidos com o seu resultado.</p>
+
+        <div class="diff-cards" style="margin-top:36px">
+          <div class="diff-card" data-aos="fade-up">
+            <div class="diff-icon">🎯</div>
+            <div>
+              <h4>Especialização exclusiva em licitações</h4>
+              <p>Diferente de escritórios generalistas, licitação é nosso único foco. Profundidade técnica que faz diferença em cada detalhe.</p>
+            </div>
+          </div>
+          <div class="diff-card" data-aos="fade-up" data-aos-delay="60">
+            <div class="diff-icon">🏛️</div>
+            <div>
+              <h4>Conhecemos a licitação por dentro</h4>
+              <p>Nossos sócios são servidores públicos com atuação em órgãos de controle. Sabemos exatamente o que o gestor público analisa — e usamos isso a seu favor.</p>
+            </div>
+          </div>
+          <div class="diff-card" data-aos="fade-up" data-aos-delay="120">
+            <div class="diff-icon">📊</div>
+            <div>
+              <h4>Relatórios de performance mensais</h4>
+              <p>Você acompanha tudo: editais monitorados, participações, resultados e oportunidades captadas. Total transparência.</p>
+            </div>
+          </div>
+          <div class="diff-card" data-aos="fade-up" data-aos-delay="180">
+            <div class="diff-icon">🔐</div>
+            <div>
+              <h4>Confidencialidade e compliance total</h4>
+              <p>Sigilo absoluto nas informações da sua empresa. Atuamos dentro dos mais rígidos padrões éticos e jurídicos do setor público.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Números -->
+      <div data-aos="fade-left" data-aos-delay="100">
+        <div class="diff-numbers">
+          <div class="diff-num-card">
+            <div class="diff-num-big">20<span class="gold">+</span></div>
+            <div class="diff-num-label">Anos de experiência somada dos sócios</div>
+          </div>
+          <div class="diff-num-card navy-card">
+            <div class="diff-num-big" style="color:var(--gold)">500<span style="color:white;font-size:28px">+</span></div>
+            <div class="diff-num-label">Licitações acompanhadas ao longo da carreira</div>
+          </div>
+          <div class="diff-num-card navy-card">
+            <div class="diff-num-big" style="color:var(--gold)">73<span style="color:white;font-size:28px">%</span></div>
+            <div class="diff-num-label">Taxa de êxito nas disputas acompanhadas</div>
+          </div>
+          <div class="diff-num-card">
+            <div class="diff-num-big">150<span class="gold">+</span></div>
+            <div class="diff-num-label">Empresas atendidas em todo o Brasil</div>
+          </div>
+        </div>
+
+        <!-- Selos de credibilidade -->
+        <div style="margin-top:28px;background:white;border-radius:var(--radius-lg);padding:28px;border:1px solid var(--border)" data-aos="fade-up" data-aos-delay="200">
+          <p style="font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--silver);margin-bottom:16px">Conhecimento comprovado em</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--off-white);color:var(--text-mid);border:1px solid var(--steel);font-weight:500">Lei 14.133/2021</span>
+            <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--off-white);color:var(--text-mid);border:1px solid var(--steel);font-weight:500">Decreto 10.024/19</span>
+            <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--off-white);color:var(--text-mid);border:1px solid var(--steel);font-weight:500">Lei 12.462/11 — RDC</span>
+            <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--off-white);color:var(--text-mid);border:1px solid var(--steel);font-weight:500">PNCP</span>
+            <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--off-white);color:var(--text-mid);border:1px solid var(--steel);font-weight:500">ComprasNet</span>
+            <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--off-white);color:var(--text-mid);border:1px solid var(--steel);font-weight:500">Dispensa Eletrônica</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SÓCIOS
+============================================================ -->
+<section class="partners" id="socios">
+  <div class="container">
+    <div style="text-align:center" data-aos="fade-up">
+      <div class="sec-tag" style="justify-content:center">
+        <div class="sec-tag-line"></div>
+        <span>Nossa Equipe</span>
+      </div>
+      <h2 class="sec-title">Os especialistas <em>por trás</em><br/>dos seus resultados</h2>
+      <p class="sec-sub" style="margin:16px auto 0;text-align:center">Dois servidores públicos que conhecem a licitação pelo lado de dentro — e usam esse conhecimento único para colocar sua empresa à frente da concorrência.</p>
+    </div>
+
+    <div class="partners-grid">
+      <div class="partner-card" data-aos="fade-right" data-aos-delay="100">
+        <div class="partner-avatar">L</div>
+        <p class="partner-name">Luís Olavo</p>
+        <p class="partner-title">Sócio-fundador · Servidor Público</p>
+        <p class="partner-bio">
+          Com mais de 10 anos de experiência no mercado licitatório, Luís Olavo traz um diferencial que poucos consultores têm: conhece a licitação pelo lado de dentro. Como servidor público, atuou diretamente em órgãos de controle interno, o que lhe confere visão privilegiada sobre como as comissões avaliam propostas, quais erros resultam em desclassificação e onde estão as melhores oportunidades para o fornecedor privado. Especialista em análise de editais, impugnações e recursos administrativos de alta complexidade.
+        </p>
+        <span class="partner-exp">🏛️ 10+ anos · Servidor Público</span>
+        <div class="partner-tags">
+          <span class="partner-tag">Controle Interno</span>
+          <span class="partner-tag">Análise de Editais</span>
+          <span class="partner-tag">Recursos e Impugnações</span>
+          <span class="partner-tag">Visão do Setor Público</span>
+        </div>
+      </div>
+
+      <div class="partner-card" data-aos="fade-left" data-aos-delay="100">
+        <div class="partner-avatar" style="background:linear-gradient(135deg,var(--navy-light),var(--gold));color:var(--navy)">H</div>
+        <p class="partner-name">Heitor Fernando</p>
+        <p class="partner-title">Sócio-fundador · Servidor Público</p>
+        <p class="partner-bio">
+          Heitor Fernando soma mais de 10 anos de vivência no ambiente das licitações públicas, tendo atuado em diversas comissões. Essa trajetória dentro da máquina pública é o que torna sua atuação estrategicamente única: sabe exatamente o que o gestor público busca em uma proposta vencedora. Especialista em elaboração de propostas técnicas, precificação estratégica e acompanhamento de sessões de pregão eletrônico, traduz o conhecimento do setor público em vantagem competitiva real para seus clientes.
+        </p>
+        <span class="partner-exp">🏛️ 10+ anos · Servidor Público</span>
+        <div class="partner-tags">
+          <span class="partner-tag">Controle Externo</span>
+          <span class="partner-tag">Elaboração de Propostas</span>
+          <span class="partner-tag">Pregão Eletrônico</span>
+          <span class="partner-tag">Precificação Estratégica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DEPOIMENTOS
+============================================================ -->
+<section class="testimonials" id="depoimentos">
+  <div class="container">
+    <div style="text-align:center" data-aos="fade-up">
+      <div class="sec-tag" style="justify-content:center">
+        <div class="sec-tag-line"></div>
+        <span>Depoimentos</span>
+      </div>
+      <h2 class="sec-title">Clientes que <em>confiaram</em><br/>e conquistaram contratos</h2>
+    </div>
+
+    <div class="test-grid">
+      <div class="test-card" data-aos="fade-up">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Tentamos participar de licitações por conta própria por dois anos, sempre fomos inabilitados ou desclassificados. Com a Lex Pública, na segunda participação já ganhamos um contrato de R$ 380 mil com a prefeitura. Profissionalismo impecável."</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:var(--navy)">M</div>
+          <div>
+            <div class="test-name">Marcos Oliveira</div>
+            <div class="test-detail">CEO · Empresa de TI · São Paulo/SP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card featured-t" data-aos="fade-up" data-aos-delay="100">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"O diferencial da Lex Pública é a atenção ao detalhe. Eles não só participam — estudam cada edital, identificam riscos que a gente nunca veria. Já captamos mais de R$ 1,2 milhão em contratos no último ano. Parceria que recomendo sem hesitar."</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:var(--gold);color:var(--navy)">F</div>
+          <div>
+            <div class="test-name">Fernanda Ramos</div>
+            <div class="test-detail">Diretora · Construtora · Belo Horizonte/MG</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Sou pequeno empresário e achava que licitação era coisa de grande empresa. A Lex me mostrou que não. Hoje tenho contrato com estado e município simultâneos. O governo se tornou meu maior cliente. Gratidão enorme pela equipe."</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:var(--navy-light)">J</div>
+          <div>
+            <div class="test-name">João Batista</div>
+            <div class="test-detail">Proprietário · Distribuidora · Curitiba/PR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA RESULTADO
+============================================================ -->
+<section class="resultado" id="contato">
+  <div class="container">
+    <div class="resultado-inner">
+      <div class="resultado-grid">
+        <!-- Texto -->
+        <div data-aos="fade-right">
+          <h2 class="resultado-title">
+            O governo pode ser<br/>seu maior <span class="gold">cliente.</span>
+          </h2>
+          <p class="resultado-sub">
+            O mercado de compras públicas movimenta mais de <strong style="color:rgba(255,255,255,0.85)">R$ 900 bilhões por ano</strong> no Brasil. Sua empresa está deixando dinheiro na mesa a cada edital que passa despercebido.
+          </p>
+          <div class="check-list">
+            <div class="check-item"><div class="check-mark">✓</div> Consultoria inicial 100% gratuita e sem compromisso</div>
+            <div class="check-item"><div class="check-mark">✓</div> Diagnóstico completo do potencial licitatório da sua empresa</div>
+            <div class="check-item"><div class="check-mark">✓</div> Acompanhamento ponta a ponta em todos os processos</div>
+            <div class="check-item"><div class="check-mark">✓</div> Equipe especializada com 20+ anos de experiência</div>
+            <div class="check-item"><div class="check-mark">✓</div> Atendimento ágil e relatórios mensais de performance</div>
+          </div>
+        </div>
+
+        <!-- Formulário -->
+        <div data-aos="fade-left" data-aos-delay="150">
+          <div class="resultado-form">
+            <h3 class="rf-title">Fale com um especialista</h3>
+            <p class="rf-sub">Retorno garantido em até 4 horas úteis. Sem custo.</p>
+
+            <form action="https://formspree.io/f/SEU_ID" method="POST">
+              <div class="rf-row">
+                <div class="rf-group">
+                  <label class="rf-label">Nome</label>
+                  <input type="text" name="nome" class="rf-input" placeholder="Seu nome" required/>
+                </div>
+                <div class="rf-group">
+                  <label class="rf-label">WhatsApp</label>
+                  <input type="tel" name="whatsapp" class="rf-input" placeholder="(00) 00000-0000" required/>
+                </div>
+              </div>
+              <div class="rf-group">
+                <label class="rf-label">Empresa e CNPJ</label>
+                <input type="text" name="empresa" class="rf-input" placeholder="Nome da empresa e CNPJ"/>
+              </div>
+              <div class="rf-group">
+                <label class="rf-label">Segmento / Atividade</label>
+                <select name="segmento" class="rf-select">
+                  <option value="">Selecione o segmento</option>
+                  <option>Tecnologia da Informação</option>
+                  <option>Construção Civil e Obras</option>
+                  <option>Saúde e Equipamentos Médicos</option>
+                  <option>Alimentação e Gêneros</option>
+                  <option>Serviços de Limpeza / Vigilância</option>
+                  <option>Mobiliário e Material de Escritório</option>
+                  <option>Consultoria e Serviços Técnicos</option>
+                  <option>Outro segmento</option>
+                </select>
+              </div>
+              <div class="rf-group">
+                <label class="rf-label">Já participou de licitações?</label>
+                <select name="experiencia" class="rf-select">
+                  <option value="">Selecione</option>
+                  <option>Nunca participei</option>
+                  <option>Já participei mas sem sucesso</option>
+                  <option>Já ganhei e quero escalar</option>
+                  <option>Estou em processo ativo agora</option>
+                </select>
+              </div>
+              <div class="rf-group">
+                <label class="rf-label">Mensagem (opcional)</label>
+                <textarea name="mensagem" class="rf-textarea" placeholder="Conte brevemente sobre sua empresa e objetivo..."></textarea>
+              </div>
+              <button type="submit" class="rf-submit">SOLICITAR CONSULTORIA GRATUITA →</button>
+            </form>
+
+            <div class="rf-divider" style="margin:14px 0 10px">— ou entre em contato direto —</div>
+
+            <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20uma%20consultoria%20gratuita%20sobre%20licitações." target="_blank" class="wa-btn-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.52 14.14c-.23.65-1.33 1.24-1.84 1.32-.46.07-1.05.1-1.69-.11-.39-.12-.88-.29-1.51-.57-2.65-1.14-4.38-3.82-4.51-4-.13-.17-1.08-1.43-1.08-2.73s.68-1.93.93-2.19c.24-.26.52-.32.69-.32l.5.01c.16 0 .38-.06.59.45l.82 2.06c.07.18.04.39-.09.56l-.45.54c-.1.12-.2.26-.08.5.55 1 1.22 1.71 2.16 2.29.24.14.39.12.53-.04l.52-.61c.14-.17.35-.22.55-.14l1.93.91c.32.15.46.26.46.52 0 .25-.05.78-.28 1.44z"/>
+              </svg>
+              Conversar no WhatsApp agora
+            </a>
+
+            <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:14px">
+              🔒 Informações 100% confidenciais · Sem spam
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+============================================================ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <!-- Esquerda sticky -->
+      <div class="faq-sticky" data-aos="fade-right">
+        <div class="sec-tag">
+          <div class="sec-tag-line"></div>
+          <span>Dúvidas Frequentes</span>
+        </div>
+        <h2 class="sec-title">
+          Perguntas que<br/>nossos clientes<br/><em>sempre fazem</em>
+        </h2>
+        <p class="sec-sub">Não encontrou o que procurava? Fale diretamente com um especialista.</p>
+        <div class="faq-cta-box">
+          <h4>Ainda tem dúvidas?</h4>
+          <p>Nossa equipe responde em até 4 horas úteis. Consultoria inicial sem custo.</p>
+          <a href="https://wa.me/5500000000000" target="_blank" class="wa-btn-full" style="margin-top:0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.52 14.14c-.23.65-1.33 1.24-1.84 1.32-.46.07-1.05.1-1.69-.11-.39-.12-.88-.29-1.51-.57-2.65-1.14-4.38-3.82-4.51-4-.13-.17-1.08-1.43-1.08-2.73s.68-1.93.93-2.19c.24-.26.52-.32.69-.32l.5.01c.16 0 .38-.06.59.45l.82 2.06c.07.18.04.39-.09.56l-.45.54c-.1.12-.2.26-.08.5.55 1 1.22 1.71 2.16 2.29.24.14.39.12.53-.04l.52-.61c.14-.17.35-.22.55-.14l1.93.91c.32.15.46.26.46.52 0 .25-.05.78-.28 1.44z"/></svg>
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ lista -->
+      <div class="faq-list" data-aos="fade-left" data-aos-delay="100">
+
+        <div class="faq-item">
+          <button class="faq-btn-el" onclick="toggleFaq(this)">
+            <span class="faq-q">Minha empresa pode participar de licitações mesmo sendo MEI ou pequeno porte?</span>
+            <div class="faq-chevron">+</div>
+          </button>
+          <div class="faq-ans"><p>Sim! A Lei 14.133/21 e a LC 123/2006 garantem tratamento diferenciado e favorecido a MEI, ME e EPP nas licitações públicas, incluindo cotas exclusivas, desempate técnico e outros benefícios. Muitos editais são destinados exclusivamente a micro e pequenas empresas. Ajudamos sua empresa a identificar e aproveitar essas vantagens.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn-el" onclick="toggleFaq(this)">
+            <span class="faq-q">Quanto custa contratar a Lex Pública?</span>
+            <div class="faq-chevron">+</div>
+          </button>
+          <div class="faq-ans"><p>Nossa consultoria é sob medida para cada cliente. Após a avaliação gratuita, apresentamos uma proposta personalizada baseada no volume de editais, segmento e objetivos da sua empresa. Trabalhamos com modelos de mensalidade fixa, por sucesso ou combinados — sempre com total transparência.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn-el" onclick="toggleFaq(this)">
+            <span class="faq-q">O que mudou com a Nova Lei de Licitações (14.133/2021)?</span>
+            <div class="faq-chevron">+</div>
+          </button>
+          <div class="faq-ans"><p>A Lei 14.133/2021 trouxe mudanças significativas ao mercado licitatório: novas modalidades como o Diálogo Competitivo, maior digitalização e transparência nos processos, critérios mais objetivos de julgamento e fortalecimento do planejamento nas contratações públicas. Nossa equipe domina a nova lei em profundidade e garante que sua empresa esteja sempre em conformidade e bem posicionada em cada certame.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn-el" onclick="toggleFaq(this)">
+            <span class="faq-q">Em quanto tempo posso conquistar meu primeiro contrato?</span>
+            <div class="faq-chevron">+</div>
+          </button>
+          <div class="faq-ans"><p>Depende do segmento, regularidade da empresa e do volume de oportunidades disponíveis. Em média, nossos clientes conseguem participar das primeiras licitações entre 15 e 30 dias após o início da assessoria. A conquista do primeiro contrato varia, mas nossos clientes ativos têm taxa de êxito de 73% nas disputas acompanhadas.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn-el" onclick="toggleFaq(this)">
+            <span class="faq-q">Vocês atendem empresas de qualquer estado?</span>
+            <div class="faq-chevron">+</div>
+          </button>
+          <div class="faq-ans"><p>Sim. Atendemos empresas em todo o Brasil de forma 100% remota. O mercado licitatório é majoritariamente digital (pregão eletrônico, PNCP, ComprasNet), o que nos permite assessorar clientes de qualquer região com a mesma qualidade e agilidade.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn-el" onclick="toggleFaq(this)">
+            <span class="faq-q">O que acontece se perdermos uma licitação?</span>
+            <div class="faq-chevron">+</div>
+          </button>
+          <div class="faq-ans"><p>Faz parte do processo. Analisamos cada resultado para identificar oportunidades de melhoria, avaliamos a viabilidade de recurso administrativo e ajustamos a estratégia para as próximas disputas. Nosso compromisso é com o resultado sustentável e crescente ao longo do tempo.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RODAPÉ
+============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon" style="background:rgba(255,255,255,0.08)">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="11" y="3" width="2" height="18" rx="1" fill="#C9A84C"/>
+              <rect x="4" y="8" width="16" height="1.5" rx="0.75" fill="white" opacity="0.6"/>
+              <circle cx="7" cy="15" r="3" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+              <circle cx="17" cy="13" r="3" stroke="white" stroke-width="1.5" fill="none" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="logo-wordmark">
+            <span class="logo-name" style="color:white">Lex <span>Pública</span></span>
+            <span class="logo-sub">Consultoria em Licitações</span>
+          </div>
+        </div>
+        <p>Assessoria especializada em licitações públicas — do edital ao contrato. Transformamos o governo no maior cliente da sua empresa.</p>
+        <div class="footer-oab">🏛️ Especialistas em Direito Administrativo</div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">Análise de Editais</a></li>
+          <li><a href="#servicos">Habilitação Documental</a></li>
+          <li><a href="#servicos">Elaboração de Propostas</a></li>
+          <li><a href="#servicos">Recursos e Impugnações</a></li>
+          <li><a href="#servicos">Gestão de Contratos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#socios">Nossa Equipe</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#processo">Como Funciona</a></li>
+          <li><a href="#faq">Dúvidas Frequentes</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5500000000000">WhatsApp</a></li>
+          <li><a href="mailto:contato@lexpublica.com.br">contato@lexpublica.com.br</a></li>
+          <li><a href="#">Seg–Sex: 8h às 18h</a></li>
+          <li><a href="#">Todo o Brasil</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 Lex Pública Consultoria em Licitações. Todos os direitos reservados.</p>
+      <p><a href="#">Política de Privacidade</a> · Desenvolvido com 🏛️</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     BOTÃO WHATSAPP FLUTUANTE
+============================================================ -->
+<a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20uma%20consultoria%20gratuita%20sobre%20licitações." target="_blank" class="wa-float" title="Falar no WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.52 14.14c-.23.65-1.33 1.24-1.84 1.32-.46.07-1.05.1-1.69-.11-.39-.12-.88-.29-1.51-.57-2.65-1.14-4.38-3.82-4.51-4-.13-.17-1.08-1.43-1.08-2.73s.68-1.93.93-2.19c.24-.26.52-.32.69-.32l.5.01c.16 0 .38-.06.59.45l.82 2.06c.07.18.04.39-.09.56l-.45.54c-.1.12-.2.26-.08.5.55 1 1.22 1.71 2.16 2.29.24.14.39.12.53-.04l.52-.61c.14-.17.35-.22.55-.14l1.93.91c.32.15.46.26.46.52 0 .25-.05.78-.28 1.44z"/>
+  </svg>
+</a>
+
+<!-- Voltar ao topo -->
+<a href="#inicio" class="back-top" id="backTop">↑</a>
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script>
+  // AOS
+  AOS.init({ duration: 800, once: true, easing: 'ease-out-quart', offset: 50 });
+
+  // Navbar scroll
+  const nav = document.getElementById('navbar');
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('shadow', window.scrollY > 50);
+    backTop.classList.toggle('show', window.scrollY > 600);
+  });
+
+  // Menu mobile
+  function toggleMob() {
+    document.getElementById('mobMenu').classList.toggle('open');
+  }
+
+  // FAQ
+  function toggleFaq(btn) {
+    const item    = btn.closest('.faq-item');
+    const ans     = item.querySelector('.faq-ans');
+    const chevron = item.querySelector('.faq-chevron');
+    const isOpen  = item.classList.contains('open');
+
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-ans').classList.remove('open');
+      i.querySelector('.faq-chevron').textContent = '+';
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      ans.classList.add('open');
+      chevron.textContent = '+';
+    }
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
